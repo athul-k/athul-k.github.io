@@ -57,7 +57,7 @@ function HomePage() {
           <Link
             to="/about"
             style={{
-              color: '#ff6f91',
+              color: '#4287f5',
               margin: '0 1rem',
               textDecoration: 'none',
               fontSize: '1.2rem',
@@ -68,7 +68,7 @@ function HomePage() {
           <Link
             to="/projects"
             style={{
-              color: '#ff6f91',
+              color: '#4287f5',
               margin: '0 1rem',
               textDecoration: 'none',
               fontSize: '1.2rem',
@@ -79,7 +79,7 @@ function HomePage() {
           <Link
             to="/contact"
             style={{
-              color: '#ff6f91',
+              color: '#4287f5',
               margin: '0 1rem',
               textDecoration: 'none',
               fontSize: '1.2rem',
