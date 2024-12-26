@@ -102,6 +102,41 @@ function HomePage() {
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
+        <div>
+          <Link
+            to="/about"
+            style={{
+              color: '#4287f5',
+              margin: '0 1rem',
+              textDecoration: 'none',
+              fontSize: '1.2rem',
+            }}
+          >
+            about
+          </Link>
+          <Link
+            to="/projects"
+            style={{
+              color: '#4287f5',
+              margin: '0 1rem',
+              textDecoration: 'none',
+              fontSize: '1.2rem',
+            }}
+          >
+            projects
+          </Link>
+          <Link
+            to="/contact"
+            style={{
+              color: '#4287f5',
+              margin: '0 1rem',
+              textDecoration: 'none',
+              fontSize: '1.2rem',
+            }}
+          >
+            contact
+          </Link>
+        </div>
       </div>
     </div>
   );
