@@ -1,14 +1,49 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Particles from 'react-tsparticles';
-import { OrbitSpace } from 'orbit-space';
 
 // Example "pages" to show routing
 function HomePage() {
   return (
-    
-  <OrbitSpace>
     <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+      <Starfield
+        starCount={1000}
+        starColor={[255, 255, 255]}
+        speedFactor={0.05}
+        backgroundColor="black"
+      />
+      {/* Starry background
+      <Particles
+        style={{ position: 'absolute', top: 0, left: 0 }}
+        options={{
+          fpsLimit: 60,
+          background: {
+            color: '#000', // black background
+          },
+          particles: {
+            number: {
+              value: 80,
+            },
+            color: {
+              value: '#ffffff',
+            },
+            shape: {
+              type: 'circle',
+            },
+            opacity: {
+              value: 1,
+            },
+            size: {
+              value: 1,
+            },
+            move: {
+              enable: true,
+              speed: 0.5,
+            },
+          },
+        }}
+      /> */}
+
       {/* Content on top of the particles */}
       <div
         style={{
@@ -61,7 +96,6 @@ function HomePage() {
         </div>
       </div>
     </div>
-    </OrbitSpace>
   );
 }
 
