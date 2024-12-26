@@ -51,7 +51,7 @@ function HomePage() {
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: '2rem' }}>
-          Welcome to My Starry Homepage!
+          hi!
         </h1>
         <div>
           <Link
