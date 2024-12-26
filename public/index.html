@@ -1,44 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- A nice title for the tab -->
     <title>athul</title>
-    <style>
-      /* Make sure the page takes full height and no default margin */
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: #000; /* fallback background color */
-      }
-    </style>
+    <!-- Responsive meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Other potential meta tags or links to icons -->
   </head>
   <body>
-    <!-- Where our React app will render -->
+    <!--
+      The div into which our entire React app will be rendered.
+      We do NOT manually put content in here, because React will replace it.
+    -->
     <div id="root"></div>
-
-    <!-- 1) React and ReactDOM from a CDN -->
-    <script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
-    
-    <!-- 2) tsparticles (core) and react-tsparticles (wrapper) from CDN -->
-    <!-- Note: these versions may change over time -->
-    <script src="https://unpkg.com/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-    <script src="https://unpkg.com/react-tsparticles@2.10.1/dist/react-tsparticles.min.js"></script>
-
-    <!-- 3) Our React code (inline) -->
-    <script>
-      // We'll pull out React from the global `React` var provided by the CDN
-      const { useState, useRef } = React;
-      const Particles = window["react-tsparticles"].Particles; 
-      // Grab the 'root' element on the page
-      const rootElement = document.getElementById("root");
-
-      // Render our HomePage component using ReactDOM
-      ReactDOM.render(
-        React.createElement(HomePage, null),
-        rootElement
-      );
-    </script>
+    <!--
+      Note: No <script> tags for React/ReactDOM here because
+      Create React App injects the compiled bundle automatically.
+    -->
   </body>
 </html>
