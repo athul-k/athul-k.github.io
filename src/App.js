@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Particles from 'react-tsparticles';
+import { OrbitSpace } from 'orbit-space';
 
 // Example "pages" to show routing
 function HomePage() {
   return (
+    
+  <OrbitSpace>
     <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
       {/* Starry background */}
       <Particles
@@ -90,6 +93,7 @@ function HomePage() {
         </div>
       </div>
     </div>
+    </OrbitSpace>
   );
 }
 
