@@ -14,38 +14,6 @@ function HomePage() {
         speedFactor={0.05}
         backgroundColor="black"
       />
-      {/* Starry background
-      <Particles
-        style={{ position: 'absolute', top: 0, left: 0 }}
-        options={{
-          fpsLimit: 60,
-          background: {
-            color: '#000', // black background
-          },
-          particles: {
-            number: {
-              value: 80,
-            },
-            color: {
-              value: '#ffffff',
-            },
-            shape: {
-              type: 'circle',
-            },
-            opacity: {
-              value: 1,
-            },
-            size: {
-              value: 1,
-            },
-            move: {
-              enable: true,
-              speed: 0.5,
-            },
-          },
-        }}
-      /> */}
-
       {/* Content on top of the particles */}
       <div
         style={{
@@ -103,15 +71,45 @@ function HomePage() {
 
 // Additional pages (just placeholders for demonstration)
 function AboutPage() {
-  return <h2 style={{ color: '#fff' }}>About Page</h2>;
+  return (
+  <>
+    <Starfield
+      starCount={100000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+    />
+    <h2 style={{ color: '#fff' }}>about</h2>
+    </>
+  );
 }
 
 function ProjectsPage() {
-  return <h2 style={{ color: '#fff' }}>Projects Page</h2>;
+  return (
+    <>
+    <Starfield
+      starCount={100000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+    />
+    <h2 style={{ color: '#fff' }}>projects</h2>
+    </>
+  );
 }
 
 function ContactPage() {
-  return <h2 style={{ color: '#fff' }}>Contact Page</h2>;
+  return (
+  <>
+  <Starfield
+    starCount={100000}
+    starColor={[255, 255, 255]}
+    speedFactor={0.05}
+    backgroundColor="black"
+  />
+  <h2 style={{ color: '#fff' }}>contact</h2>
+  </>
+);
 }
 
 function App() {
