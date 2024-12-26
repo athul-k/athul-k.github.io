@@ -9,8 +9,75 @@ const starfieldStyle = {
   left: 0,
   width: '100%',
   height: '100%',
-  zIndex: 0,         // behind other elements
+  zIndex: 0, // behind other elements
 };
+
+function Navbar() {
+  return (
+    <nav
+      style={{
+        position: 'relative',
+        zIndex: 2, 
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: '1rem',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      {/* Home Link */}
+      <Link
+        to="/"
+        style={{
+          color: '#4287f5',
+          margin: '0 1rem',
+          textDecoration: 'none',
+          fontSize: '1.2rem',
+        }}
+      >
+        Home
+      </Link>
+
+      {/* About Link */}
+      <Link
+        to="/about"
+        style={{
+          color: '#4287f5',
+          margin: '0 1rem',
+          textDecoration: 'none',
+          fontSize: '1.2rem',
+        }}
+      >
+        About
+      </Link>
+
+      {/* Projects Link */}
+      <Link
+        to="/projects"
+        style={{
+          color: '#4287f5',
+          margin: '0 1rem',
+          textDecoration: 'none',
+          fontSize: '1.2rem',
+        }}
+      >
+        Projects
+      </Link>
+
+      {/* Contact Link */}
+      <Link
+        to="/contact"
+        style={{
+          color: '#4287f5',
+          margin: '0 1rem',
+          textDecoration: 'none',
+          fontSize: '1.2rem',
+        }}
+      >
+        Contact
+      </Link>
+    </nav>
+  );
+}
 
 function HomePage() {
   return (
@@ -22,11 +89,11 @@ function HomePage() {
         speedFactor={0.05}
         backgroundColor="black"
       />
-      {/* Content on top of the Starfield */}
+      {/* Page Content */}
       <div
         style={{
           position: 'relative',
-          zIndex: 1, // ensure content is in front
+          zIndex: 1, // ensure content is above the starfield
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -35,41 +102,6 @@ function HomePage() {
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
-        <div>
-          <Link
-            to="/about"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            About
-          </Link>
-          <Link
-            to="/projects"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            Projects
-          </Link>
-          <Link
-            to="/contact"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            Contact
-          </Link>
-        </div>
       </div>
     </div>
   );
@@ -77,16 +109,18 @@ function HomePage() {
 
 function AboutPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh' }}>
+    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
       <Starfield
         style={starfieldStyle}
-        starCount={100000}
+        starCount={10000}
         starColor={[255, 255, 255]}
         speedFactor={0.05}
         backgroundColor="black"
       />
-      <div style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
+      <Navbar />
+      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <h2>about</h2>
+        <p>Some info about the site or yourself here.</p>
       </div>
     </div>
   );
@@ -94,16 +128,18 @@ function AboutPage() {
 
 function ProjectsPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh' }}>
+    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
       <Starfield
         style={starfieldStyle}
-        starCount={100000}
+        starCount={10000}
         starColor={[255, 255, 255]}
         speedFactor={0.05}
         backgroundColor="black"
       />
-      <div style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
+      <Navbar />
+      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <h2>projects</h2>
+        <p>Project details go here.</p>
       </div>
     </div>
   );
@@ -111,16 +147,18 @@ function ProjectsPage() {
 
 function ContactPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh' }}>
+    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
       <Starfield
         style={starfieldStyle}
-        starCount={100000}
+        starCount={10000}
         starColor={[255, 255, 255]}
         speedFactor={0.05}
         backgroundColor="black"
       />
-      <div style={{ position: 'relative', zIndex: 1, color: '#fff' }}>
+      <Navbar />
+      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <h2>contact</h2>
+        <p>Contact info goes here.</p>
       </div>
     </div>
   );
