@@ -9,38 +9,6 @@ function HomePage() {
     
   <OrbitSpace>
     <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
-      {/* Starry background */}
-      <Particles
-        style={{ position: 'absolute', top: 0, left: 0 }}
-        options={{
-          fpsLimit: 60,
-          background: {
-            color: '#000', // black background
-          },
-          particles: {
-            number: {
-              value: 80,
-            },
-            color: {
-              value: '#ffffff',
-            },
-            shape: {
-              type: 'circle',
-            },
-            opacity: {
-              value: 1,
-            },
-            size: {
-              value: 1,
-            },
-            move: {
-              enable: true,
-              speed: 0.5,
-            },
-          },
-        }}
-      />
-
       {/* Content on top of the particles */}
       <div
         style={{
