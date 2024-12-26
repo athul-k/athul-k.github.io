@@ -34,7 +34,7 @@ function Navbar() {
           fontSize: '1.2rem',
         }}
       >
-        Home
+        home
       </Link>
 
       {/* About Link */}
@@ -47,7 +47,7 @@ function Navbar() {
           fontSize: '1.2rem',
         }}
       >
-        About
+        about
       </Link>
 
       {/* Projects Link */}
@@ -60,7 +60,7 @@ function Navbar() {
           fontSize: '1.2rem',
         }}
       >
-        Projects
+        projects
       </Link>
 
       {/* Contact Link */}
@@ -73,7 +73,7 @@ function Navbar() {
           fontSize: '1.2rem',
         }}
       >
-        Contact
+        contact
       </Link>
     </nav>
   );
@@ -119,7 +119,6 @@ function AboutPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <h2>about</h2>
         <p>Some info about the site or yourself here.</p>
       </div>
     </div>
@@ -138,7 +137,6 @@ function ProjectsPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <h2>projects</h2>
         <p>Project details go here.</p>
       </div>
     </div>
@@ -157,7 +155,6 @@ function ContactPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <h2>contact</h2>
         <p>Contact info goes here.</p>
       </div>
     </div>
