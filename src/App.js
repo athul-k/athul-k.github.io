@@ -36,7 +36,6 @@ function Navbar() {
       >
         home
       </Link>
-
       {/* About Link */}
       <Link
         to="/about"
@@ -93,7 +92,7 @@ function HomePage() {
       <div
         style={{
           position: 'relative',
-          zIndex: 1, // ensure content is above the starfield
+          zIndex: 1, 
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -154,7 +153,7 @@ function AboutPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>Some info about the site or yourself here.</p>
+        <p>hi. again.</p>
       </div>
     </div>
   );
@@ -172,7 +171,7 @@ function ProjectsPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>Project details go here.</p>
+        <p>soon!</p>
       </div>
     </div>
   );
@@ -190,7 +189,7 @@ function ContactPage() {
       />
       <Navbar />
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>Contact info goes here.</p>
+        <p>email: athul@berkeley.edu</p>
       </div>
     </div>
   );
