@@ -38,8 +38,9 @@ const Navbar = memo(() => {
         height: '60px',
       }}
     >
-      <a
-        href="#/"
+      {/* Use <Link to="..."> instead of <a href="..."> */}
+      <Link
+        to="/"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -48,9 +49,10 @@ const Navbar = memo(() => {
         }}
       >
         home
-      </a>
-      <a
-        href="#/about"
+      </Link>
+
+      <Link
+        to="/about"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -59,9 +61,10 @@ const Navbar = memo(() => {
         }}
       >
         about
-      </a>
-      <a
-        href="#/projects"
+      </Link>
+
+      <Link
+        to="/projects"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -70,9 +73,10 @@ const Navbar = memo(() => {
         }}
       >
         projects
-      </a>
-      <a
-        href="#/resume"
+      </Link>
+
+      <Link
+        to="/resume"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -81,9 +85,10 @@ const Navbar = memo(() => {
         }}
       >
         resume
-      </a>
-      <a
-        href="#/contact"
+      </Link>
+
+      <Link
+        to="/contact"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -92,10 +97,11 @@ const Navbar = memo(() => {
         }}
       >
         contact
-      </a>
+      </Link>
     </nav>
   );
 });
+
 
 function Layout({ children }) {
   return (
@@ -176,7 +182,7 @@ function ResumePage() {
     <PageWrapper>
       <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>resume</h2>
       <iframe
-        src="Athul_Resume.pdf"
+        src="/Athul_Resume.pdf"
         title="resume"
         style={{
           width: '80%',
@@ -185,7 +191,7 @@ function ResumePage() {
         }}
       />
       <p style={{ color: '#fff', marginTop: '1rem' }}>
-        if you can't see the PDF, <a href="Athul_Resume.pdf" style={{ color: '#4287f5' }}>click here</a> to download.
+        if you can't see the PDF, <a href="/Athul_Resume.pdf" style={{ color: '#4287f5' }}>click here</a> to download.
       </p>
     </PageWrapper>
   );
