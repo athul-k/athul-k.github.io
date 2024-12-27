@@ -1,5 +1,6 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import Starfield from 'react-starfield';
 
 // -- Shared style for Starfield so it's behind content --
@@ -24,9 +25,8 @@ function Navbar() {
         justifyContent: 'center',
       }}
     >
-      {/* Home Link */}
-      <Link
-        to="/"
+      <a
+        href="#/"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -35,10 +35,9 @@ function Navbar() {
         }}
       >
         home
-      </Link>
-      {/* About Link */}
-      <Link
-        to="/about"
+      </a>
+      <a
+        href="#/about"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -47,11 +46,9 @@ function Navbar() {
         }}
       >
         about
-      </Link>
-
-      {/* Projects Link */}
-      <Link
-        to="/projects"
+      </a>
+      <a
+        href="#/projects"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -60,11 +57,9 @@ function Navbar() {
         }}
       >
         projects
-      </Link>
-
-      {/* Contact Link */}
-      <Link
-        to="/contact"
+      </a>
+      <a
+        href="#/contact"
         style={{
           color: '#4287f5',
           margin: '0 1rem',
@@ -73,14 +68,36 @@ function Navbar() {
         }}
       >
         contact
-      </Link>
+      </a>
     </nav>
+  );
+}
+
+// Page Wrapper Component with Animation
+function PageWrapper({ children }) {
+  const pageVariants = {
+    initial: { opacity: 0, x: "-100vw" },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: "100vw" },
+  };
+
+  return (
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ duration: 0.5 }}
+      style={{ position: 'relative', height: '100vh', width: '100%' }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
 function HomePage() {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <PageWrapper>
       <Starfield
         style={starfieldStyle}
         starCount={10000}
@@ -88,7 +105,7 @@ function HomePage() {
         speedFactor={0.05}
         backgroundColor="black"
       />
-      {/* Page Content */}
+      <Navbar />
       <div
         style={{
           position: 'relative',
@@ -101,49 +118,14 @@ function HomePage() {
         }}
       >
         <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
-        <div>
-          <Link
-            to="/about"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            about
-          </Link>
-          <Link
-            to="/projects"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            projects
-          </Link>
-          <Link
-            to="/contact"
-            style={{
-              color: '#4287f5',
-              margin: '0 1rem',
-              textDecoration: 'none',
-              fontSize: '1.2rem',
-            }}
-          >
-            contact
-          </Link>
-        </div>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
 function AboutPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <PageWrapper>
       <Starfield
         style={starfieldStyle}
         starCount={10000}
@@ -155,13 +137,13 @@ function AboutPage() {
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <p>hi. again.</p>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
 function ProjectsPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <PageWrapper>
       <Starfield
         style={starfieldStyle}
         starCount={10000}
@@ -173,13 +155,13 @@ function ProjectsPage() {
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <p>soon!</p>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
 function ContactPage() {
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100%' }}>
+    <PageWrapper>
       <Starfield
         style={starfieldStyle}
         starCount={10000}
@@ -191,22 +173,30 @@ function ContactPage() {
       <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
         <p>email: athul@berkeley.edu</p>
       </div>
-    </div>
+    </PageWrapper>
   );
 }
 
 function App() {
+  const location = useLocation();
+
   return (
-    // Use HashRouter so routes work on GitHub Pages without additional config
-    <Router>
-      <Routes>
+    // Use AnimatePresence for transitions
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.key}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
-    </Router>
+    </AnimatePresence>
   );
 }
 
-export default App;
+export default function Root() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
