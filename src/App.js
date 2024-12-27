@@ -3,14 +3,14 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import { motion, AnimatePresence } from 'framer-motion';
 import Starfield from 'react-starfield';
 
-// -- Shared style for Starfield so it's behind content --
+// -- Shared style for Starfield --
 const starfieldStyle = {
-  position: 'absolute',
+  position: 'fixed', // Use fixed to keep it static during transitions
   top: 0,
   left: 0,
   width: '100%',
   height: '100%',
-  zIndex: 0, // behind other elements
+  zIndex: 0, // Always behind content
 };
 
 function Navbar() {
@@ -18,7 +18,7 @@ function Navbar() {
     <nav
       style={{
         position: 'relative',
-        zIndex: 2, 
+        zIndex: 2, // Above the starfield but below transitions
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: '1rem',
         display: 'flex',
@@ -73,11 +73,12 @@ function Navbar() {
   );
 }
 
+// Page Wrapper with Two-Way Slide Animation
 function PageWrapper({ children }) {
   const pageVariants = {
-    initial: { opacity: 0, x: "-100vw" },
-    animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: "100vw" },
+    initial: { opacity: 0, x: "100vw" }, // Start off-screen (right)
+    animate: { opacity: 1, x: 0 },       // Slide in to the center
+    exit: { opacity: 0, x: "-100vw" },   // Slide out to the left
   };
 
   return (
@@ -89,9 +90,8 @@ function PageWrapper({ children }) {
       transition={{ duration: 0.5 }}
       style={{
         position: 'relative',
-        height: '100vh',
-        width: '100%',
-        backgroundColor: 'black', // Add this to prevent white flash
+        zIndex: 1, // Above the starfield
+        padding: '2rem',
       }}
     >
       {children}
@@ -102,27 +102,7 @@ function PageWrapper({ children }) {
 function HomePage() {
   return (
     <PageWrapper>
-      <Starfield
-        style={starfieldStyle}
-        starCount={10000}
-        starColor={[255, 255, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
-      <Navbar />
-      <div
-        style={{
-          position: 'relative',
-          zIndex: 1, 
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-        }}
-      >
-        <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
-      </div>
+      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
     </PageWrapper>
   );
 }
@@ -130,17 +110,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <Starfield
-        style={starfieldStyle}
-        starCount={10000}
-        starColor={[255, 255, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
-      <Navbar />
-      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>hi. again.</p>
-      </div>
+      <p style={{ color: '#4287f5' }}>hi. again.</p>
     </PageWrapper>
   );
 }
@@ -148,17 +118,7 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <PageWrapper>
-      <Starfield
-        style={starfieldStyle}
-        starCount={10000}
-        starColor={[255, 255, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
-      <Navbar />
-      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>soon!</p>
-      </div>
+      <p style={{ color: '#4287f5' }}>soon!</p>
     </PageWrapper>
   );
 }
@@ -166,17 +126,7 @@ function ProjectsPage() {
 function ContactPage() {
   return (
     <PageWrapper>
-      <Starfield
-        style={starfieldStyle}
-        starCount={10000}
-        starColor={[255, 255, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
-      <Navbar />
-      <div style={{ position: 'relative', zIndex: 1, color: '#4287f5', padding: '2rem' }}>
-        <p>email: athul@berkeley.edu</p>
-      </div>
+      <p style={{ color: '#4287f5' }}>email: athul@berkeley.edu</p>
     </PageWrapper>
   );
 }
@@ -185,15 +135,29 @@ function App() {
   const location = useLocation();
 
   return (
-    // Use AnimatePresence for transitions
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.key}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      {/* Static Starfield */}
+      <Starfield
+        style={starfieldStyle}
+        starCount={10000}
+        starColor={[255, 255, 255]}
+        speedFactor={0.05}
+        backgroundColor="black"
+      />
+
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Page Transitions */}
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 }
 
