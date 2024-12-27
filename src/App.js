@@ -1,28 +1,41 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Starfield from 'react-starfield';
 
-// -- Shared style for Starfield --
-const starfieldStyle = {
-  position: 'fixed', // Fixed to make it persistent across pages
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  zIndex: 0, // Always behind content
-};
+const MemoStarfield = memo(() => {
+  return (
+    <Starfield
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+      }}
+      starCount={10000}
+      starColor={[255, 255, 255]}
+      speedFactor={0.05}
+      backgroundColor="black"
+    />
+  );
+});
 
-function Navbar() {
+const Navbar = memo(() => {
   return (
     <nav
       style={{
-        position: 'relative',
-        zIndex: 2, // Above the starfield
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 2,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        padding: '1rem',
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
+        height: '60px',
       }}
     >
       <a
@@ -59,6 +72,17 @@ function Navbar() {
         projects
       </a>
       <a
+        href="#/resume"
+        style={{
+          color: '#4287f5',
+          margin: '0 1rem',
+          textDecoration: 'none',
+          fontSize: '1.2rem',
+        }}
+      >
+        resume
+      </a>
+      <a
         href="#/contact"
         style={{
           color: '#4287f5',
@@ -71,14 +95,24 @@ function Navbar() {
       </a>
     </nav>
   );
+});
+
+function Layout({ children }) {
+  return (
+    <>
+      <MemoStarfield />
+      <Navbar />
+      {children}
+    </>
+  );
 }
 
-// Page Wrapper with Two-Way Slide Animation
 function PageWrapper({ children }) {
+  // Two-way slide-out transition
   const pageVariants = {
-    initial: { opacity: 0, x: "100vw" }, // Slide in from right
-    animate: { opacity: 1, x: 0 },       // Centered
-    exit: { opacity: 0, x: "-100vw" },   // Slide out to left
+    initial: { opacity: 0, x: '100vw' }, // Enter from right
+    animate: { opacity: 1, x: 0 },       // Center
+    exit: { opacity: 0, x: '-100vw' },   // Exit to left
   };
 
   return (
@@ -87,11 +121,17 @@ function PageWrapper({ children }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.6, ease: 'easeInOut' }}
       style={{
-        position: 'relative',
-        zIndex: 1, // Above the starfield
-        padding: '2rem',
+        position: 'absolute',
+        top: '60px', 
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       {children}
@@ -102,7 +142,10 @@ function PageWrapper({ children }) {
 function HomePage() {
   return (
     <PageWrapper>
-      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi! i'm athul.</h1>
+      <h1 style={{ color: '#fff', marginBottom: '1rem' }}>hi! i'm athul.</h1>
+      <p style={{ color: '#fff', marginBottom: '1rem' }}>
+        i really hope this works lmao
+      </p>
     </PageWrapper>
   );
 }
@@ -110,7 +153,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>me</p>
+      <p style={{ color: '#4287f5' }}>more stuff about me</p>
     </PageWrapper>
   );
 }
@@ -118,7 +161,32 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>soon</p>
+      <h2 style={{ color: '#4287f5' }}>projects</h2>
+      <ul style={{ color: '#fff' }}>
+        <li>Project 1: [Add details]</li>
+        <li>Project 2: [Add details]</li>
+        <li>Project 3: [Add details]</li>
+      </ul>
+    </PageWrapper>
+  );
+}
+
+function ResumePage() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>resume</h2>
+      <iframe
+        src="Athul_Resume.pdf"
+        title="resume"
+        style={{
+          width: '80%',
+          height: '60%',
+          border: '2px solid #4287f5',
+        }}
+      />
+      <p style={{ color: '#fff', marginTop: '1rem' }}>
+        if you can't see the PDF, <a href="Athul_Resume.pdf" style={{ color: '#4287f5' }}>click here</a> to download.
+      </p>
     </PageWrapper>
   );
 }
@@ -135,29 +203,17 @@ function App() {
   const location = useLocation();
 
   return (
-    <>
-      {/* Persistent Starfield */}
-      <Starfield
-        style={starfieldStyle}
-        starCount={10000}
-        starColor={[255, 255, 255]}
-        speedFactor={0.05}
-        backgroundColor="black"
-      />
-
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Page Transitions */}
+    <Layout>
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.key}>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/resume" element={<ResumePage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </AnimatePresence>
-    </>
+    </Layout>
   );
 }
 
