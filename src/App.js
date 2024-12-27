@@ -73,7 +73,6 @@ function Navbar() {
   );
 }
 
-// Page Wrapper Component with Animation
 function PageWrapper({ children }) {
   const pageVariants = {
     initial: { opacity: 0, x: "-100vw" },
@@ -88,7 +87,12 @@ function PageWrapper({ children }) {
       animate="animate"
       exit="exit"
       transition={{ duration: 0.5 }}
-      style={{ position: 'relative', height: '100vh', width: '100%' }}
+      style={{
+        position: 'relative',
+        height: '100vh',
+        width: '100%',
+        backgroundColor: 'black', // Add this to prevent white flash
+      }}
     >
       {children}
     </motion.div>
