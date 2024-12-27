@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, Link} from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Starfield from 'react-starfield';
 
