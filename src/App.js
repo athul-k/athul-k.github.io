@@ -23,21 +23,42 @@ const MemoStarfield = memo(() => {
 });
 
 const Navbar = memo(() => {
+  const mobileStyles = `
+    @media (max-width: 600px) {
+      .navbar-responsive {
+        flex-wrap: wrap;      /* allow wrapping links */
+        height: auto;         /* let height expand */
+        padding: 0.5rem 0;    /* a bit more padding */
+      }
+
+      .navbar-responsive a {
+        margin: 0.25rem 1rem; /* smaller margin */
+        font-size: 1rem;      /* slightly smaller text */
+      }
+    }
+  `;
   return (
     <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 2,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '60px',
-      }}
-    >
+    // We'll apply a class name so the media query can target it
+    className="navbar-responsive"
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 2,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '60px',
+      // Larger screens: keep everything on one line
+      // The media query will override on smaller screens
+    }}
+  >
+    {/* Embed the CSS for mobile inside a <style> tag */}
+    <style>{mobileStyles}</style>
+    
       {/* Use <Link to="..."> instead of <a href="..."> */}
       <Link
         to="/"

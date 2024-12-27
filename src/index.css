@@ -16,4 +16,42 @@ code {
     monospace;
 }
 
+/* Navbar.css */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  /* Let the links wrap on small screens */
+  flex-wrap: wrap;
+}
+
+/* The links themselves */
+.navbar a {
+  color: #4287f5;
+  margin: 0 1rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* MEDIA QUERY for smaller screens */
+@media (max-width: 600px) {
+  .navbar {
+    height: auto;           /* let height expand */
+    padding: 0.5rem 0;      /* some extra vertical padding */
+  }
+
+  .navbar a {
+    margin: 0.25rem 1rem;   /* smaller margin */
+    font-size: 1rem;        /* slightly smaller text */
+  }
+}
+
 
