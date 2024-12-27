@@ -102,7 +102,7 @@ function PageWrapper({ children }) {
 function HomePage() {
   return (
     <PageWrapper>
-      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>Welcome to Home!</h1>
+      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi! i'm athul.</h1>
     </PageWrapper>
   );
 }
@@ -110,7 +110,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>About this application.</p>
+      <p style={{ color: '#4287f5' }}>me</p>
     </PageWrapper>
   );
 }
@@ -118,7 +118,7 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>Projects will be displayed here.</p>
+      <p style={{ color: '#4287f5' }}>soon</p>
     </PageWrapper>
   );
 }
@@ -126,7 +126,7 @@ function ProjectsPage() {
 function ContactPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>Contact us at: athul@berkeley.edu</p>
+      <p style={{ color: '#4287f5' }}>email: athul@berkeley.edu</p>
     </PageWrapper>
   );
 }
