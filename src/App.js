@@ -148,7 +148,7 @@ function PageWrapper({ children }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.6, ease: 'easeInOut' }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
       style={{
         position: 'absolute',
         top: '60px', 
