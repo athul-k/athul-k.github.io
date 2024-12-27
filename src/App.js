@@ -5,7 +5,7 @@ import Starfield from 'react-starfield';
 
 // -- Shared style for Starfield --
 const starfieldStyle = {
-  position: 'fixed', // Use fixed to keep it static during transitions
+  position: 'fixed', // Fixed to make it persistent across pages
   top: 0,
   left: 0,
   width: '100%',
@@ -18,7 +18,7 @@ function Navbar() {
     <nav
       style={{
         position: 'relative',
-        zIndex: 2, // Above the starfield but below transitions
+        zIndex: 2, // Above the starfield
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: '1rem',
         display: 'flex',
@@ -76,9 +76,9 @@ function Navbar() {
 // Page Wrapper with Two-Way Slide Animation
 function PageWrapper({ children }) {
   const pageVariants = {
-    initial: { opacity: 0, x: "100vw" }, // Start off-screen (right)
-    animate: { opacity: 1, x: 0 },       // Slide in to the center
-    exit: { opacity: 0, x: "-100vw" },   // Slide out to the left
+    initial: { opacity: 0, x: "100vw" }, // Slide in from right
+    animate: { opacity: 1, x: 0 },       // Centered
+    exit: { opacity: 0, x: "-100vw" },   // Slide out to left
   };
 
   return (
@@ -87,7 +87,7 @@ function PageWrapper({ children }) {
       initial="initial"
       animate="animate"
       exit="exit"
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
         position: 'relative',
         zIndex: 1, // Above the starfield
@@ -102,7 +102,7 @@ function PageWrapper({ children }) {
 function HomePage() {
   return (
     <PageWrapper>
-      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>hi!</h1>
+      <h1 style={{ color: '#fff', marginBottom: '2rem' }}>Welcome to Home!</h1>
     </PageWrapper>
   );
 }
@@ -110,7 +110,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>hi. again.</p>
+      <p style={{ color: '#4287f5' }}>About this application.</p>
     </PageWrapper>
   );
 }
@@ -118,7 +118,7 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>soon!</p>
+      <p style={{ color: '#4287f5' }}>Projects will be displayed here.</p>
     </PageWrapper>
   );
 }
@@ -126,7 +126,7 @@ function ProjectsPage() {
 function ContactPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>email: athul@berkeley.edu</p>
+      <p style={{ color: '#4287f5' }}>Contact us at: athul@berkeley.edu</p>
     </PageWrapper>
   );
 }
@@ -136,7 +136,7 @@ function App() {
 
   return (
     <>
-      {/* Static Starfield */}
+      {/* Persistent Starfield */}
       <Starfield
         style={starfieldStyle}
         starCount={10000}
