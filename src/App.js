@@ -2,8 +2,7 @@ import React, { memo } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Starfield from 'react-starfield';
-import { Typed as ReactTyped } from 'react-typed';
-
+import { TypeAnimation } from 'react-type-animation'
 //
 // 1) Starfield & Navbar (unchanged except we kept your responsive approach)
 //
@@ -60,7 +59,7 @@ const Navbar = memo(() => {
       <Link
         to="/"
         style={{
-          color: '#4287f5',
+          color: '#006dcc',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -71,7 +70,7 @@ const Navbar = memo(() => {
       <Link
         to="/about"
         style={{
-          color: '#4287f5',
+          color: '#006dcc',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -82,7 +81,7 @@ const Navbar = memo(() => {
       <Link
         to="/projects"
         style={{
-          color: '#4287f5',
+          color: '#006dcc',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -93,7 +92,7 @@ const Navbar = memo(() => {
       <Link
         to="/resume"
         style={{
-          color: '#4287f5',
+          color: '#006dcc',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -104,7 +103,7 @@ const Navbar = memo(() => {
       <Link
         to="/contact"
         style={{
-          color: '#4287f5',
+          color: '#006dcc',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -138,22 +137,26 @@ function PageWrapper({ children }) {
 
   return (
     <motion.div
-      variants={pageVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      style={{
-        position: 'absolute',
-        top: '60px',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+    variants={pageVariants}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+    transition={{ duration: 0.3, ease: 'easeInOut' }}
+    style={{
+      /* Remove position: 'absolute' so the page scrolls normally */
+      /* Let content fill the screen's height and expand if needed */
+      minHeight: '100vh',
+      /* Push content down ~60px or more so it’s below the fixed navbar */
+      paddingTop: '80px',
+      /* Box-sizing ensures padding doesn’t cause weird overflow */
+      boxSizing: 'border-box',
+      /* Centering content if desired */
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      /* If you want top alignment instead, remove justifyContent: 'center' */
+      justifyContent: 'flex-start',
+    }}
     >
       {children}
     </motion.div>
@@ -167,20 +170,63 @@ function HomePage() {
   return (
     <PageWrapper>
       {/* A typed-out animation using react-typed */}
-      <ReactTyped
-        strings={[
-          "hi! i'm athul.",
-          "welcome to my portfolio.",
-          "explore my projects below!",
-        ]}
-        typeSpeed={50}
-        backSpeed={30}
-        loop
-        style={{ color: '#fff', fontSize: '2rem', textAlign: 'center' }}
-      />
-      <p style={{ color: '#fff', margin: '1rem', textAlign: 'center' }}>
+      <TypeAnimation
+      sequence={[
+        'hi! i\'m athul.', 
+        2000, 
+        () => {
+          console.log('Sequence completed');
+        },
+      ]}
+      wrapper="span"
+      cursor={false}
+      repeat={0}
+      style={{color: '#fff', fontSize: '2em', display: 'inline-block', textAlign: 'center'}}
+    />
+      {/* <p style={{ color: '#fff', margin: '1rem', textAlign: 'center' }}>
         i really hope this works lmao
-      </p>
+      </p> */}
+    <TypeAnimation
+      sequence={[
+        2000,
+        'i\'m a junior at uc berkeley (meche & eecs).',
+        2000, // Waits 2s
+        'i like controls, optimization, and robotics.', 
+        2000, 
+        'i like research oriented positions.',  
+        2000, 
+        'please recruit me :)',
+        2000,
+        'contact me about anything you see here!',
+        30000,
+        'now, time for some fun facts.',
+        5000,
+        'i love typing in lowercase.',
+        5000,
+        'pad kee mao is my favorite food.',
+        5000,
+        'my favorite soccer team is barcelona.',
+        5000,
+        'my sleep schedule has a mind of its own.',
+        5000,
+        'i like chocolate chip cookies a lot,',
+        1000,
+        'my girlfriend and i bake them often.',
+        5000,
+        'i also really love cats, and want to get my own sometime!',
+        5000,
+        'i think i\'ll let this start from the top now.',
+        1000, 
+        'thanks for listening!',
+        () => {
+          console.log('Sequence completed');
+        },
+      ]}
+      wrapper="span"
+      cursor={true}
+      repeat={Infinity}
+      style={{color: '#006dcc', fontSize: '1em', display: 'inline-block', textAlign: 'center'}}
+    />
     </PageWrapper>
   );
 }
@@ -188,7 +234,7 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>more stuff about me</p>
+      <p style={{ color: '#006dcc' }}>more stuff about me</p>
     </PageWrapper>
   );
 }
@@ -200,11 +246,11 @@ function AboutPage() {
 function ProjectsPage() {
   return (
     <PageWrapper>
-      <div style={{ width: '80%', margin: '2rem auto', color: '#fff' }}>
-        <h1 style={{ color: '#4287f5', marginBottom: '1.5rem' }}>projects</h1>
+      <div style={{ width: '80%', margin: '2rem auto', color: '#fff'}}>
+        <h1 style={{ color: '#006dcc', marginBottom: '1.5rem' }}>projects</h1>
 
         {/* Hardware Section */}
-        <h2 style={{ borderBottom: '2px solid #4287f5' }}>hardware</h2>
+        <h2 style={{ borderBottom: '2px solid #006dcc' }}>hardware</h2>
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
             src="/hardware_project1.jpg"
@@ -213,16 +259,10 @@ function ProjectsPage() {
           />
           <div style={{ flex: 1 }}>
             <h3>
-              <Link
-                to="/projects/hardware/1"
-                style={{ color: '#4287f5', textDecoration: 'none' }}
-              >
-                hardware project 1
-              </Link>
+            <a href="https://www.youtube.com/watch?v=KUTON_LL8Ps" style={{ color: '#006dcc' }}>rubik's cube solver!</a>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              A short summary about your hardware project. 
-              Click the title to learn more.
+              my friends and i made a rubik's cube solver in high school, for our AP Physics C capstone project. it can solve a rubik's cube in about 3 seconds. click the heading to see a walkthrough of it.
             </p>
           </div>
         </div>
@@ -236,20 +276,23 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/hardware/2"
-                style={{ color: '#4287f5', textDecoration: 'none' }}
+                style={{ color: '#006dcc', textDecoration: 'none' }}
               >
-                hardware project 2
+                fsae ev (formula electric car) suspension system
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              Another hardware project summary. 
-              Describe microcontrollers, sensors, mechanics, etc.
+              i designed, validated, and made drawings for the uprights of Formula Electric @ Berkeley's FSAE car. (SN3). 
+              i was also the {' '}
+              <span style={{ color: '#aaaaaa' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, leading the subteam through the design cycle, developing and validating 
+              our new 3-element suspension system, and overhauling our FEA processes.
             </p>
           </div>
         </div>
 
         {/* Software Section */}
-        <h2 style={{ borderBottom: '2px solid #4287f5', marginTop: '3rem' }}>software</h2>
+        <h2 style={{ borderBottom: '2px solid #006dcc', marginTop: '3rem' }}>software</h2>
+        <h4 style={{ marginTop: '-1rem' }}>note: for class projects, i am not allowed to link my code on this website. email me and i can send it to you privately, <span style={{ color: '#aaaaaa' }}>if and only if you are interested in employing me</span>{''}. no code for other cal students, sorry!</h4>
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
             src="/software_project1.jpg"
@@ -260,13 +303,15 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/software/1"
-                style={{ color: '#4287f5', textDecoration: 'none' }}
+                style={{ color: '#006dcc', textDecoration: 'none' }}
               >
-                software project 1
+                pacbot
+                <div style={{marginTop: '-1rem'}}> <h5><span style={{ color: '#5eb4ff' }}>language: <span style={{ color: '#aaaaaa'}}>python</span>{' '} libraries: <span style={{ color: '#aaaaaa' }}>WIP, update soon</span>{''}</span>{''}</h5></div>
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              A short summary about your software project. Maybe a web or mobile app.
+              for our class  {' '}
+              <span style={{ color: '#aaaaaa' }}>CS188 (Artificial Intelligence)</span>{''}, a friend and i made an autonomous pacman player, running on SLAM and policy optimization.
             </p>
           </div>
         </div>
@@ -280,14 +325,39 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/software/2"
-                style={{ color: '#4287f5', textDecoration: 'none' }}
+                style={{ color: '#006dcc', textDecoration: 'none' }}
               >
-                software project 2
+                2d game (i'll update this title lol)
+                <div style={{marginTop: '-1rem'}}> <h5><span style={{ color: '#5eb4ff' }}>language: <span style={{ color: '#aaaaaa'}}>java</span>{' '} libraries: <span style={{ color: '#aaaaaa' }}>TETile, TERenderer</span>{''}</span>{''}</h5></div>
+                </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+              for our class {' '}
+              <span style={{ color: '#aaaaaa' }}>CS61B (Data Structures & Algorithms)</span>{''}, a friend and i made a fun 2D horror game, with randomized world generation, dynamic lighting and an AI enemy. the ai enemy was optimal, running on BFS, and the world generation utilized an underlying quick-union structure.
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/software_project2.jpg"
+            alt="Software Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/software/3"
+                style={{ color: '#006dcc', textDecoration: 'none' }}
+              >
+                TSP (traveling salesperson) approximation algorithm
+                <div style={{marginTop: '-1rem'}}> <h5><span style={{ color: '#5eb4ff' }}>language: <span style={{ color: '#aaaaaa'}}>python</span>{' '} libraries: <span style={{ color: '#aaaaaa' }}>networkx, numba, cython</span>{''}</span>{''}</h5></div>
+
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              Another software project summary. 
-              Perhaps an API, machine learning model, etc.
+              as part of an optional competition for my class {' '}
+              <span style={{ color: '#aaaaaa' }}>CS170 (Efficient Algorithms & Intractable Problems)</span>{''}, i made an approximation algorithm for the traveling salesperson problem. it builds on christofides' 3/2-approximation algorithm,
+               using an optimized number of 3-opt and 2-opt iterations with random restarts to find a close to optimal solution (approx 5/4 on average).{' '}<span style={{ color: '#aaaaaa' }}>it ranked #1/121 submissions.</span>{''}
             </p>
           </div>
         </div>
@@ -303,7 +373,7 @@ function ProjectsPage() {
 function HardwareProjectDetail1() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
         Hardware Project 1
       </h2>
       <img
@@ -321,7 +391,7 @@ function HardwareProjectDetail1() {
 function HardwareProjectDetail2() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
         Hardware Project 2
       </h2>
       <img
@@ -338,7 +408,7 @@ function HardwareProjectDetail2() {
 function SoftwareProjectDetail1() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
         Software Project 1
       </h2>
       <img
@@ -355,7 +425,7 @@ function SoftwareProjectDetail1() {
 function SoftwareProjectDetail2() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
         Software Project 2
       </h2>
       <img
@@ -370,25 +440,43 @@ function SoftwareProjectDetail2() {
   );
 }
 
+function SoftwareProjectDetail3() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
+        Software Project 2
+      </h2>
+      <img
+        src="/software_project3.jpg"
+        alt="Software Project 3"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+        Detailed info on software project 3. 
+      </p>
+    </PageWrapper>
+  );
+}
+
 //
 // 6) Resume & Contact (same as before, but shortened text).
 //
 function ResumePage() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#4287f5', marginBottom: '1rem' }}>resume</h2>
+      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>resume</h2>
       <iframe
         src="/Athul_Resume.pdf"
         title="resume"
         style={{
           width: '80%',
           height: '60%',
-          border: '2px solid #4287f5',
+          border: '2px solid #006dcc',
         }}
       />
       <p style={{ color: '#fff', marginTop: '1rem' }}>
         if you can't see the PDF,{' '}
-        <a href="/Athul_Resume.pdf" style={{ color: '#4287f5' }}>click here</a> to download.
+        <a href="/Athul_Resume.pdf" style={{ color: '#006dcc' }}>click here</a> to download.
       </p>
     </PageWrapper>
   );
@@ -397,7 +485,7 @@ function ResumePage() {
 function ContactPage() {
   return (
     <PageWrapper>
-      <p style={{ color: '#4287f5' }}>email: athul@berkeley.edu</p>
+      <p style={{ color: '#006dcc' }}>email: athul@berkeley.edu</p>
     </PageWrapper>
   );
 }
@@ -423,6 +511,8 @@ function App() {
           <Route path="/projects/hardware/2" element={<HardwareProjectDetail2 />} />
           <Route path="/projects/software/1" element={<SoftwareProjectDetail1 />} />
           <Route path="/projects/software/2" element={<SoftwareProjectDetail2 />} />
+          <Route path="/projects/software/3" element={<SoftwareProjectDetail3 />} />
+
         </Routes>
       </AnimatePresence>
     </Layout>
