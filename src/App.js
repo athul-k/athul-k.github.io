@@ -290,8 +290,8 @@ function ProjectsPage() {
               </a>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              My friends and I made a Rubik's cube solver in high school. It can solve
-              a cube in about 3 seconds. Check out the video!
+            my friends and i made a rubik's cube solver in high school, for our AP Physics C capstone project. 
+            it can solve a rubik's cube in about 3 seconds. click the heading to see a walkthrough of it.
             </p>
           </div>
         </div>
@@ -311,8 +311,11 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              I designed, validated, and made drawings for the uprights of a Formula
-              Electric car at Berkeley...
+            i designed, validated, and made drawings for the uprights of Formula Electric @ Berkeley's FSAE car. (SN3). 
+              i was also the {' '}
+              <span style={{ color: '#aaaaaa' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, 
+              leading the subteam through the design cycle, developing and validating 
+              our new 3-element suspension system, and overhauling our FEA processes.
             </p>
           </div>
         </div>
@@ -346,7 +349,9 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              For our CS188 course, a friend and I made an autonomous Pac-Man player...
+            for our class  {' '}
+            <span style={{ color: '#aaaaaa' }}>CS188 (Artificial Intelligence)</span>{''}, 
+            a friend and i made an autonomous pacman player, running on SLAM and policy optimization.
             </p>
           </div>
         </div>
@@ -374,7 +379,10 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              For CS61B, we built a 2D horror game with randomized world generation...
+            for our class {' '}
+            <span style={{ color: '#aaaaaa' }}>CS61B (Data Structures & Algorithms)</span>{''}, a friend and i made a fun 2D horror game, 
+            with randomized world generation, dynamic lighting and an AI enemy. the ai enemy was optimal, running on BFS, 
+            and the world generation utilized an underlying quick-union structure.
             </p>
           </div>
         </div>
@@ -402,7 +410,11 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-              An optional competition project for CS170. I implemented a ~5/4 approximation...
+               as part of an optional competition for my class {' '}
+               <span style={{ color: '#aaaaaa' }}>CS170 (Efficient Algorithms & Intractable Problems)</span>{''}, 
+               i made an approximation algorithm for the traveling salesperson problem. it builds on christofides' 3/2-approximation algorithm,
+               using an optimized number of 3-opt and 2-opt iterations with random restarts to find a close to optimal solution 
+               (approx 5/4 on average).{' '}<span style={{ color: '#aaaaaa' }}>it ranked #1/121 submissions.</span>{''}           
             </p>
           </div>
         </div>
