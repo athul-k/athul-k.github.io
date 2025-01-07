@@ -418,7 +418,7 @@ function HardwareProjectDetail1() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        Hardware Project 1
+        fsae ev car
       </h2>
       <img
         src="/hardware_project1.jpg"
@@ -426,7 +426,7 @@ function HardwareProjectDetail1() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        Detailed info on hardware project 1. Describe the design, parts used...
+        car go boing
       </p>
     </PageWrapper>
   );
@@ -436,7 +436,7 @@ function HardwareProjectDetail2() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        Hardware Project 2
+        self driving rc car
       </h2>
       <img
         src="/hardware_project2.jpg"
@@ -444,7 +444,7 @@ function HardwareProjectDetail2() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        Another hardware detail page. Explain your engineering process.
+        tbd
       </p>
     </PageWrapper>
   );
@@ -457,7 +457,7 @@ function SoftwareProjectDetail1() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        Software Project 1
+        pacbot - CS188
       </h2>
       <img
         src="/software_project1.jpg"
@@ -465,7 +465,7 @@ function SoftwareProjectDetail1() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        More about the PacBot project or other software details.
+        tbd
       </p>
     </PageWrapper>
   );
@@ -475,7 +475,7 @@ function SoftwareProjectDetail2() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        Software Project 2
+        BYOW - CS61B
       </h2>
       <img
         src="/software_project2.jpg"
@@ -483,7 +483,7 @@ function SoftwareProjectDetail2() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        Another software project, e.g. the 2D horror game.
+      tbd
       </p>
     </PageWrapper>
   );
@@ -493,7 +493,7 @@ function SoftwareProjectDetail3() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        Software Project 3
+        tsp approximation algorithm - CS170
       </h2>
       <img
         src="/software_project3.jpg"
@@ -501,7 +501,7 @@ function SoftwareProjectDetail3() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        TSP approximation project details...
+      tbd
       </p>
     </PageWrapper>
   );
@@ -542,7 +542,7 @@ function ContactPage() {
     <PageWrapper>
       <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>contact</h2>
       <p style={{ color: '#fff' }}>
-        email me at: <span style={{ color: '#006dcc' }}>athul@berkeley.edu</span>
+        email me: <span style={{ color: '#006dcc' }}>athul [at] berkeley [dot] edu</span>
       </p>
     </PageWrapper>
   );
