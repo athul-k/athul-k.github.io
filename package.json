@@ -4,6 +4,7 @@
   "homepage": "https://athul-k.github.io/",
   "private": true,
   "dependencies": {
+    "@flodlc/nebula": "^1.0.56",
     "cra-template": "1.2.0",
     "framer-motion": "^11.15.0",
     "orbit-space": "^1.1.0",
