@@ -102,8 +102,17 @@ const Navbar = memo(() => {
 ========================================= */
 function Layout({ children }) {
   return (
-    <>
-      <ReactNebula
+    <div style={{ position: 'relative', minHeight: '100vh' }}>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <ReactNebula
         config ={{
           "starsCount": 900,
           "starsColor": "#FFFFFF",
@@ -125,9 +134,10 @@ function Layout({ children }) {
           zIndex: 0, // Nebula behind everything
         }}
       />
-      <Navbar />
+      </div>
+      <Navbar/>
       {children}
-    </>
+    </div>
   );
 }
 
@@ -537,7 +547,7 @@ function ResumePage() {
       />
       <p style={{ color: '#fff', marginTop: '1rem' }}>
         If you can’t see the PDF,{' '}
-        <a href="/Athul_Resume.pdf" style={{ color: '#006dcc' }}>
+        <a href="/AthulK_Resume.pdf" style={{ color: '#006dcc' }}>
           click here
         </a>{' '}
         to download.
