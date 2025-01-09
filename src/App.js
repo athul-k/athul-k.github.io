@@ -41,7 +41,7 @@ const Navbar = memo(() => {
       <Link
         to="/"
         style={{
-          color: '#006dcc',
+          color: '#725cfa',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -52,7 +52,7 @@ const Navbar = memo(() => {
       <Link
         to="/about"
         style={{
-          color: '#006dcc',
+          color: '#725cfa',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -63,7 +63,7 @@ const Navbar = memo(() => {
       <Link
         to="/projects"
         style={{
-          color: '#006dcc',
+          color: '#725cfa',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -74,7 +74,7 @@ const Navbar = memo(() => {
       <Link
         to="/resume"
         style={{
-          color: '#006dcc',
+          color: '#725cfa',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -85,7 +85,7 @@ const Navbar = memo(() => {
       <Link
         to="/contact"
         style={{
-          color: '#006dcc',
+          color: '#725cfa',
           margin: '0 1rem',
           textDecoration: 'none',
           fontSize: '1.2rem',
@@ -229,6 +229,8 @@ function HomePage() {
             5000,
             'i love typing in lowercase.',
             5000,
+            'the font on this website is from a childhood favorite game of mine, lego universe.',
+            5000,
             'pad kee mao is my favorite food.',
             5000,
             'my favorite soccer team is barcelona.',
@@ -250,7 +252,7 @@ function HomePage() {
           cursor
           repeat={Infinity}
           style={{
-            color: '#006dcc',
+            color: '#725cfa',
             fontSize: '1em',
             display: 'inline-block',
             marginTop: '1rem',
@@ -267,10 +269,9 @@ function HomePage() {
 function AboutPage() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>about me</h2>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>about me</h2>
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6', textAlign: 'center' }}>
-        This is a placeholder for your about page. You can write about your background,
-        interests, and anything else you'd like visitors to know.
+        i'm athul, a third year double major in <span style={{ color: '#aaaaaa' }}>mechanical engineering & eecs</span>{''} at <span style={{ color: '#aaaaaa' }}>uc berkeley</span>{''}! my career interests lie in researching <span style={{ color: '#aaaaaa' }}>controls</span>{''} and <span style={{ color: '#aaaaaa' }}>robotics</span>{''}, especially on the <span style={{ color: '#aaaaaa' }}>algorithmic</span>{''} side of things. i also consider myself to be proficient in CAD, and i love designing things for fun! outside of school and whatnot, i like sleeping, gaming, going on walks, following soccer, and cats.
       </p>
     </PageWrapper>
   );
@@ -283,10 +284,10 @@ function ProjectsPage() {
   return (
     <PageWrapper>
       <div style={{ width: '80%', margin: '2rem auto', color: '#fff' }}>
-        <h1 style={{ color: '#006dcc', marginBottom: '1.5rem' }}>projects</h1>
+        <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects</h1>
 
         {/* Hardware Section */}
-        <h2 style={{ borderBottom: '2px solid #006dcc' }}>hardware</h2>
+        <h2 style={{ borderBottom: '2px solid #725cfa' }}>hardware</h2>
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
             src="/hardware_project1.jpg"
@@ -295,7 +296,7 @@ function ProjectsPage() {
           />
           <div style={{ flex: 1 }}>
             <h3>
-              <a href="https://www.youtube.com/watch?v=KUTON_LL8Ps" style={{ color: '#006dcc' }}>
+              <a href="https://www.youtube.com/watch?v=KUTON_LL8Ps" style={{ color: '#725cfa' }}>
                 rubik's cube solver!
               </a>
             </h3>
@@ -315,7 +316,7 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/hardware/2"
-                style={{ color: '#006dcc', textDecoration: 'none' }}
+                style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 fsae ev (formula electric car) suspension system
               </Link>
@@ -331,7 +332,7 @@ function ProjectsPage() {
         </div>
 
         {/* Software Section */}
-        <h2 style={{ borderBottom: '2px solid #006dcc', marginTop: '3rem' }}>software</h2>
+        <h2 style={{ borderBottom: '2px solid #725cfa', marginTop: '3rem' }}>software</h2>
         <h4 style={{ marginTop: '-1rem' }}>
           note: for class projects, code is private. Email me for more details if you’re hiring.
         </h4>
@@ -345,12 +346,12 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/software/1"
-                style={{ color: '#006dcc', textDecoration: 'none' }}
+                style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 pacbot
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#5eb4ff' }}>
+                    <span style={{ color: '#ac9eff' }}>
                       language: <span style={{ color: '#aaaaaa' }}>python</span>{' '}
                       libraries: <span style={{ color: '#aaaaaa' }}>WIP</span>
                     </span>
@@ -375,12 +376,12 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/software/2"
-                style={{ color: '#006dcc', textDecoration: 'none' }}
+                style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 2d game
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#5eb4ff' }}>
+                    <span style={{ color: '#ac9eff' }}>
                       language: <span style={{ color: '#aaaaaa' }}>java</span>{' '}
                       libraries: <span style={{ color: '#aaaaaa' }}>TETile, etc.</span>
                     </span>
@@ -406,12 +407,12 @@ function ProjectsPage() {
             <h3>
               <Link
                 to="/projects/software/3"
-                style={{ color: '#006dcc', textDecoration: 'none' }}
+                style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 TSP (traveling salesperson) approximation algorithm
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#5eb4ff' }}>
+                    <span style={{ color: '#ac9eff' }}>
                       language: <span style={{ color: '#aaaaaa' }}>python</span>{' '}
                       libraries: <span style={{ color: '#aaaaaa' }}>networkx, numba</span>
                     </span>
@@ -439,8 +440,8 @@ function ProjectsPage() {
 function HardwareProjectDetail1() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        fsae ev car
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        n/a
       </h2>
       <img
         src="/hardware_project1.jpg"
@@ -448,7 +449,7 @@ function HardwareProjectDetail1() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        car go boing
+        brrr
       </p>
     </PageWrapper>
   );
@@ -457,8 +458,8 @@ function HardwareProjectDetail1() {
 function HardwareProjectDetail2() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
-        self driving rc car
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        fsae ev car
       </h2>
       <img
         src="/hardware_project2.jpg"
@@ -466,7 +467,7 @@ function HardwareProjectDetail2() {
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
-        tbd
+        suspension go boing
       </p>
     </PageWrapper>
   );
@@ -478,7 +479,7 @@ function HardwareProjectDetail2() {
 function SoftwareProjectDetail1() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
         pacbot - CS188
       </h2>
       <img
@@ -496,7 +497,7 @@ function SoftwareProjectDetail1() {
 function SoftwareProjectDetail2() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
         BYOW - CS61B
       </h2>
       <img
@@ -514,7 +515,7 @@ function SoftwareProjectDetail2() {
 function SoftwareProjectDetail3() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
         tsp approximation algorithm - CS170
       </h2>
       <img
@@ -535,19 +536,19 @@ function SoftwareProjectDetail3() {
 function ResumePage() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>resume</h2>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>resume</h2>
       <iframe
-        src="/Athul_Resume.pdf"
+        src="/AthulK_Resume_Jan9.pdf"
         title="resume"
         style={{
           width: '80%',
           height: '600px',
-          border: '2px solid #006dcc',
+          border: '2px solid #725cfa',
         }}
       />
       <p style={{ color: '#fff', marginTop: '1rem' }}>
         If you can’t see the PDF,{' '}
-        <a href="/AthulK_Resume.pdf" style={{ color: '#006dcc' }}>
+        <a href="/AthulK_Resume_Jan9.pdf" style={{ color: '#725cfa' }}>
           click here
         </a>{' '}
         to download.
@@ -562,9 +563,9 @@ function ResumePage() {
 function ContactPage() {
   return (
     <PageWrapper>
-      <h2 style={{ color: '#006dcc', marginBottom: '1rem' }}>contact</h2>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>contact</h2>
       <p style={{ color: '#fff' }}>
-        email me: <span style={{ color: '#006dcc' }}>athul [at] berkeley [dot] edu</span>
+        email me: <span style={{ color: '#725cfa' }}>athul [at] berkeley [dot] edu</span>
       </p>
     </PageWrapper>
   );
