@@ -251,7 +251,7 @@ function HomePage() {
           cursor
           repeat={Infinity}
           style={{
-            color: '#725cfa',
+            color: '#ad9eff',
             fontSize: '1em',
             display: 'inline-block',
             marginTop: '1rem',
