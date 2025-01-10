@@ -284,7 +284,9 @@ function ProjectsPage() {
   return (
     <PageWrapper>
       <div style={{ width: '80%', margin: '2rem auto', color: '#fff' }}>
-        <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects</h1>
+        <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects (website is WIP, here is a link to a  <a href="tinyurl.com/athul-portfolio" style={{ color: '#725cfa' }}>
+               pdf portfolio.
+              </a>)</h1>
 
         {/* Hardware Section */}
         <h2 style={{ borderBottom: '2px solid #725cfa' }}>hardware</h2>
