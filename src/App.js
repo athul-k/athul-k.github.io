@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ReactNebula } from '@flodlc/nebula';
@@ -8,6 +8,9 @@ import { ReactNebula } from '@flodlc/nebula';
    NAVBAR
 ========================================= */
 const Navbar = memo(() => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const mobileStyles = `
     @media (max-width: 600px) {
       .navbar-responsive {
@@ -21,6 +24,53 @@ const Navbar = memo(() => {
       }
     }
   `;
+
+  const hoverEffect = `
+    .navbar-link {
+      position: relative;
+      text-decoration: none;
+      color: #725cfa;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 0 1rem;
+      display: inline-block;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background-color: #725cfa;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .navbar-link:hover::after {
+      width: 100%; /* Expand underline on hover */
+    }
+
+    .navbar-link:hover {
+      color: #ad9eff; /* Slightly brighter hover effect */
+    }
+
+    .navbar-link.active {
+      color: #ad9eff; /* Active link color */
+    }
+
+    .navbar-link.active::after {
+      width: 100%; /* Underline active link */
+    }
+  `;
+
+  const handleClick = (path) => {
+    if (location.pathname !== path) {
+      navigate(path);
+    }
+  };
+
   return (
     <nav
       className="navbar-responsive"
@@ -29,8 +79,8 @@ const Navbar = memo(() => {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 2000, // Keep the navbar above the nebula but below page content if needed
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 2000, 
+        backgroundColor: 'rgba(0, 0, 0, 0)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -38,67 +88,43 @@ const Navbar = memo(() => {
       }}
     >
       <style>{mobileStyles}</style>
-      <Link
-        to="/"
-        style={{
-          color: '#725cfa',
-          margin: '0 1rem',
-          textDecoration: 'none',
-          fontSize: '1.2rem',
-        }}
+      <style>{hoverEffect}</style>
+      <span
+        onClick={() => handleClick('/')}
+        className={`navbar-link ${location.pathname === '/' ? 'active' : ''}`}
       >
         home
-      </Link>
-      <Link
-        to="/about"
-        style={{
-          color: '#725cfa',
-          margin: '0 1rem',
-          textDecoration: 'none',
-          fontSize: '1.2rem',
-        }}
+      </span>
+      <span
+        onClick={() => handleClick('/about')}
+        className={`navbar-link ${location.pathname === '/about' ? 'active' : ''}`}
       >
         about
-      </Link>
-      <Link
-        to="/projects"
-        style={{
-          color: '#725cfa',
-          margin: '0 1rem',
-          textDecoration: 'none',
-          fontSize: '1.2rem',
-        }}
+      </span>
+      <span
+        onClick={() => handleClick('/projects')}
+        className={`navbar-link ${location.pathname === '/projects' ? 'active' : ''}`}
       >
         projects
-      </Link>
-      <Link
-        to="/resume"
-        style={{
-          color: '#725cfa',
-          margin: '0 1rem',
-          textDecoration: 'none',
-          fontSize: '1.2rem',
-        }}
+      </span>
+      <span
+        onClick={() => handleClick('/resume')}
+        className={`navbar-link ${location.pathname === '/resume' ? 'active' : ''}`}
       >
         resume
-      </Link>
-      <Link
-        to="/contact"
-        style={{
-          color: '#725cfa',
-          margin: '0 1rem',
-          textDecoration: 'none',
-          fontSize: '1.2rem',
-        }}
+      </span>
+      <span
+        onClick={() => handleClick('/contact')}
+        className={`navbar-link ${location.pathname === '/contact' ? 'active' : ''}`}
       >
         contact
-      </Link>
+      </span>
     </nav>
   );
 });
 
 /* =========================================
-   LAYOUT (with ReactNebula in default config)
+   LAYOUT
 ========================================= */
 function Layout({ children }) {
   return (
@@ -113,36 +139,36 @@ function Layout({ children }) {
         }}
       >
         <ReactNebula
-        config ={{
-          "starsCount": 900,
-          "starsColor": "#FFFFFF",
-          "starsRotationSpeed": 3,
-          "cometFrequence": 100,
-          "nebulasIntensity": 10,
-          "bgColor": "rgb(0,0,0)",
-          "sunScale": 0,
-          "planetsScale": 0,
-          "solarSystemOrbite": 70,
-          "solarSystemSpeedOrbit": 100
-      }}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 0, // Nebula behind everything
-        }}
-      />
+          config={{
+            starsCount: 900,
+            starsColor: '#FFFFFF',
+            starsRotationSpeed: 3,
+            cometFrequence: 100,
+            nebulasIntensity: 10,
+            bgColor: 'rgb(0,0,0)',
+            sunScale: 0,
+            planetsScale: 0,
+            solarSystemOrbite: 70,
+            solarSystemSpeedOrbit: 100,
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0, // Nebula behind everything
+          }}
+        />
       </div>
-      <Navbar/>
+      <Navbar />
       {children}
     </div>
   );
 }
 
 /* =========================================
-   PAGE WRAPPER (FRAMER MOTION TRANSITIONS)
+   PAGE WRAPPER
 ========================================= */
 function PageWrapper({ children }) {
   const pageVariants = {
@@ -159,15 +185,15 @@ function PageWrapper({ children }) {
       exit="exit"
       transition={{ duration: 0.3, ease: 'easeInOut' }}
       style={{
-        zIndex: 999,         // Keep page content well above the nebula
+        zIndex: 999,
         minHeight: '100vh',
-        paddingTop: '80px',   // ensures content is below navbar
+        paddingTop: '80px',
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        position: 'relative', // so zIndex applies
+        position: 'relative',
       }}
     >
       {children}
@@ -175,17 +201,12 @@ function PageWrapper({ children }) {
   );
 }
 
-
 /* =========================================
-   HOME PAGE (CENTERED TEXT)
+   HOME PAGE
 ========================================= */
 function HomePage() {
   return (
     <PageWrapper>
-      {/* 
-        A container that fills all available space (flex: 1) 
-        and centers items in both axes. 
-      */}
       <div
         style={{
           flex: 1,
@@ -210,6 +231,7 @@ function HomePage() {
             color: '#fff',
             fontSize: '2em',
             display: 'inline-block',
+            fontWeight: 'bold',
           }}
         />
         <TypeAnimation
@@ -224,29 +246,6 @@ function HomePage() {
             'please recruit me :)',
             2000,
             'contact me about anything you see here!',
-            30000,
-            'now, time for some fun facts.',
-            5000,
-            'i love typing in lowercase.',
-            5000,
-            'the font on this website is from a childhood favorite game of mine, lego universe.',
-            5000,
-            'pad kee mao is my favorite food.',
-            5000,
-            'my favorite soccer team is barcelona.',
-            5000,
-            'my sleep schedule has a mind of its own.',
-            5000,
-            'i like chocolate chip cookies a lot,',
-            1000,
-            'my girlfriend and i bake them often.',
-            5000,
-            'i also really love cats, and want to get my own sometime!',
-            5000,
-            "i think i'll let this start from the top now.",
-            1000,
-            'thanks for listening!',
-            () => console.log('Second typed sequence done'),
           ]}
           wrapper="span"
           cursor
@@ -263,6 +262,7 @@ function HomePage() {
   );
 }
 
+
 /* =========================================
    ABOUT PAGE
 ========================================= */
@@ -271,7 +271,7 @@ function AboutPage() {
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>about me</h2>
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6', textAlign: 'center' }}>
-        i'm athul, a third year double major in <span style={{ color: '#aaaaaa' }}>mechanical engineering & eecs</span>{''} at <span style={{ color: '#aaaaaa' }}>uc berkeley</span>{''}! my career interests lie in researching <span style={{ color: '#aaaaaa' }}>controls</span>{''} and <span style={{ color: '#aaaaaa' }}>robotics</span>{''}, especially on the <span style={{ color: '#aaaaaa' }}>algorithmic</span>{''} side of things. i also consider myself to be proficient in CAD, and i love designing things for fun! outside of school and whatnot, i like sleeping, gaming, going on walks, following soccer, and cats.
+        i'm athul, a third year double major in <span style={{ color: '#ad9eff' }}>mechanical engineering & eecs</span>{''} at <span style={{ color: '#ad9eff' }}>uc berkeley</span>{''}! my career interests lie in researching <span style={{ color: '#ad9eff' }}>controls</span>{''} and <span style={{ color: '#ad9eff' }}>robotics</span>{''}, especially on the <span style={{ color: '#ad9eff' }}>algorithmic</span>{''} side of things. i also consider myself to be proficient in CAD, and i love designing things for fun! outside of school and whatnot, i like sleeping, gaming, going on walks, following soccer, and cats.
       </p>
     </PageWrapper>
   );
@@ -324,7 +324,7 @@ function ProjectsPage() {
             <p style={{ lineHeight: '1.5' }}>
             i designed, validated, and made drawings for the uprights of Formula Electric @ Berkeley's FSAE car. (SN3). 
               i was also the {' '}
-              <span style={{ color: '#aaaaaa' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, 
+              <span style={{ color: '#ad9eff' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, 
               leading the subteam through the design cycle, developing and validating 
               our new 3-element suspension system, and overhauling our FEA processes.
             </p>
@@ -351,9 +351,9 @@ function ProjectsPage() {
                 pacbot
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#ac9eff' }}>
-                      language: <span style={{ color: '#aaaaaa' }}>python</span>{' '}
-                      libraries: <span style={{ color: '#aaaaaa' }}>WIP</span>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>python</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>WIP</span>
                     </span>
                   </h5>
                 </div>
@@ -361,7 +361,7 @@ function ProjectsPage() {
             </h3>
             <p style={{ lineHeight: '1.5' }}>
             for our class  {' '}
-            <span style={{ color: '#aaaaaa' }}>CS188 (Artificial Intelligence)</span>{''}, 
+            <span style={{ color: '#ad9eff' }}>CS188 (Artificial Intelligence)</span>{''}, 
             a friend and i made an autonomous pacman player, running on SLAM and policy optimization.
             </p>
           </div>
@@ -381,9 +381,9 @@ function ProjectsPage() {
                 2d game
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#ac9eff' }}>
-                      language: <span style={{ color: '#aaaaaa' }}>java</span>{' '}
-                      libraries: <span style={{ color: '#aaaaaa' }}>TETile, etc.</span>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>java</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>TETile, etc.</span>
                     </span>
                   </h5>
                 </div>
@@ -391,7 +391,7 @@ function ProjectsPage() {
             </h3>
             <p style={{ lineHeight: '1.5' }}>
             for our class {' '}
-            <span style={{ color: '#aaaaaa' }}>CS61B (Data Structures & Algorithms)</span>{''}, a friend and i made a fun 2D horror game, 
+            <span style={{ color: '#ad9eff' }}>CS61B (Data Structures & Algorithms)</span>{''}, a friend and i made a fun 2D horror game, 
             with randomized world generation, dynamic lighting and an AI enemy. the ai enemy was optimal, running on BFS, 
             and the world generation utilized an underlying quick-union structure.
             </p>
@@ -412,9 +412,9 @@ function ProjectsPage() {
                 TSP (traveling salesperson) approximation algorithm
                 <div style={{ marginTop: '-1rem' }}>
                   <h5>
-                    <span style={{ color: '#ac9eff' }}>
-                      language: <span style={{ color: '#aaaaaa' }}>python</span>{' '}
-                      libraries: <span style={{ color: '#aaaaaa' }}>networkx, numba</span>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>python</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>networkx, numba</span>
                     </span>
                   </h5>
                 </div>
@@ -422,10 +422,10 @@ function ProjectsPage() {
             </h3>
             <p style={{ lineHeight: '1.5' }}>
                as part of an optional competition for my class {' '}
-               <span style={{ color: '#aaaaaa' }}>CS170 (Efficient Algorithms & Intractable Problems)</span>{''}, 
+               <span style={{ color: '#ad9eff' }}>CS170 (Efficient Algorithms & Intractable Problems)</span>{''}, 
                i made an approximation algorithm for the traveling salesperson problem. it builds on christofides' 3/2-approximation algorithm,
                using an optimized number of 3-opt and 2-opt iterations with random restarts to find a close to optimal solution 
-               (approx 5/4 on average).{' '}<span style={{ color: '#aaaaaa' }}>it ranked #1/121 submissions.</span>{''}           
+               (approx 5/4 on average).{' '}<span style={{ color: '#ad9eff' }}>it ranked #1/121 submissions.</span>{''}           
             </p>
           </div>
         </div>

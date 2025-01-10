@@ -1,6 +1,11 @@
 
+/* @font-face {
+  font-family: 'Inter';
+  src: url('./fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+} */
+
 @font-face {
-  font-family: 'Helvetica Rounded';
+  font-family: 'Helvetica Rounded'; 
   src: url('./fonts/helvetica-rounded-bold-5871d05ead8de.otf') format('opentype');
 }
 body {
