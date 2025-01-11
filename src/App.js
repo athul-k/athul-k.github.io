@@ -407,6 +407,26 @@ function ProjectsPage() {
                 to="/projects/hardware/first"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
+                personal robot designs
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            i taught myself CAD(<span style={{ color: '#ad9eff' }}>Onshape</span>{''}) by designing various FTC (FIRST Tech Challenge) robots for fun. i ended up being able to churn them out day by day!
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/hardware_project2.jpg"
+            alt="Hardware Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/hardware/personal"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
                 FTC/FRC
               </Link>
             </h3>
@@ -799,6 +819,24 @@ function First() {
     </PageWrapper>
   );
 }
+function Personal() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        personal designs
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
 
 /* =========================================
    RESUME PAGE
@@ -859,6 +897,8 @@ function App() {
           {/* Mechanical Project Detail Pages */}
           <Route path="/projects/hardware/formulaelectric" element={<Formulaelectric />} />
           <Route path="/projects/hardware/cadathon" element={<Cadathonbots />} />
+          <Route path="/projects/hardware/personal" element={<Personal />} />
+
           <Route path="/projects/hardware/first" element={<First />} />
 
 
