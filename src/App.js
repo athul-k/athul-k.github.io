@@ -80,7 +80,7 @@ const Navbar = memo(() => {
         left: 0,
         right: 0,
         zIndex: 2000, 
-        backgroundColor: 'rgba(0, 0, 0, 0)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -287,9 +287,76 @@ function ProjectsPage() {
         <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects (website is WIP, here is a link to a  <a href="tinyurl.com/athul-portfolio" style={{ color: '#725cfa' }}>
                pdf portfolio.
               </a>)</h1>
+        {/* fullstack section */}
+        <h2 style={{ borderBottom: '2px solid #725cfa' }}>fullstack (mechanical and software)</h2>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/hardware_project2.jpg"
+            alt="Hardware Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/fullstack/selfdriving"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                self driving rc car (IP)
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            i'm making my own self driving RC car, complete with 4WD, torque vectoring, active suspension, and more! the plan is to optimize it for both dynamic maneuvers and speed,
+            rather than pure straight-line speed or pure skidpad. i'm currently having a lot of fun with this project, and i am excited to see how far i can take it. the end product should be able to learn, map, and navigate a path of cones autonomously at blazingly fast speeds! 
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/hardware_project2.jpg"
+            alt="Hardware Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/fullstack/gifts"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                gifts :)
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            i occasionally make gifts for my girlfriend and other friends!
+            </p>
+          </div>
+        </div>
 
         {/* Hardware Section */}
         <h2 style={{ borderBottom: '2px solid #725cfa' }}>hardware</h2>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/hardware_project2.jpg"
+            alt="Hardware Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/hardware/2"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                fsae ev (formula electric car) suspension system
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            i designed, validated, and made drawings for the uprights of Formula Electric @ Berkeley's FSAE car. (SN3). 
+              i was also the {' '}
+              <span style={{ color: '#ad9eff' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, 
+              leading the subteam through the design cycle, developing and validating 
+              our new 3-element suspension system, and overhauling our FEA processes.
+            </p>
+          </div>
+        </div>
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
             src="/hardware_project1.jpg"
@@ -317,26 +384,43 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/hardware/2"
+                to="/projects/hardware/cadathons"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
-                fsae ev (formula electric car) suspension system
+                cadathon robots
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-            i designed, validated, and made drawings for the uprights of Formula Electric @ Berkeley's FSAE car. (SN3). 
-              i was also the {' '}
-              <span style={{ color: '#ad9eff' }}>dynamics (steering & suspension)</span>{' '}lead the following semester, 
-              leading the subteam through the design cycle, developing and validating 
-              our new 3-element suspension system, and overhauling our FEA processes.
+            in high school, i took part in robot design competitions (dubbed CADathons), where we would design incredibly mechanically complicated robots packed with features to optimize for a specific set of tasks. these would typically take place over the course of 5-7 days, and i took part in and won several of them.
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/hardware_project2.jpg"
+            alt="Hardware Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/hardware/first"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                FTC/FRC
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            in high school, i participated in the FIRST Robotics Competition (8404), and FIRST Tech Challenge (9614, 18219, 7591). I was the mechanical lead on FTC 9614, the CAD lead on FTC 18219, and the team captain of FTC 7591. As part of FTC 18219, we won the international Maryland Tech Invitational Competition in 2021. 
             </p>
           </div>
         </div>
 
+
         {/* Software Section */}
-        <h2 style={{ borderBottom: '2px solid #725cfa', marginTop: '3rem' }}>software</h2>
+        <h2 style={{ borderBottom: '2px solid #725cfa', marginTop: '3rem' }}>software/ee</h2>
         <h4 style={{ marginTop: '-1rem' }}>
-          note: for class projects, code is private. Email me for more details if you’re hiring.
+          note: for class projects, code is private. email me for more details if you’re hiring.
         </h4>
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
@@ -347,7 +431,35 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/software/1"
+                to="/projects/"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                this website
+                <div style={{ marginTop: '-1rem' }}>
+                  <h5>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>javascript, css, html</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>react, framer</span>
+                    </span>
+                  </h5>
+                </div>
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            i coded this website in react, from scratch.
+            </p>
+          </div>
+        </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/software_project1.jpg"
+            alt="Software Project 1"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/software/pacbot"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 pacbot
@@ -377,7 +489,7 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/software/2"
+                to="/projects/software/byow"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 2d game
@@ -402,13 +514,43 @@ function ProjectsPage() {
         <div style={{ display: 'flex', margin: '2rem 0' }}>
           <img
             src="/software_project2.jpg"
+            alt="Software Project 2"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/software/cpu"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                logisim CPU
+                <div style={{ marginTop: '-1rem' }}>
+                  <h5>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>logisim</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>n/a</span>
+                    </span>
+                  </h5>
+                </div>
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            for our class {' '}
+            <span style={{ color: '#ad9eff' }}>CS61C (Computer Architecture)</span>{''}, a friend and i made a fully working CPU in Logisim, complete with pipelining and hazard protection.
+            </p>
+          </div>
+        </div>
+        
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/software_project3.jpg"
             alt="Software Project 3"
             style={{ width: '40%', marginRight: '1rem' }}
           />
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/software/3"
+                to="/projects/software/tspalgo"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 TSP (traveling salesperson) approximation algorithm
@@ -431,6 +573,42 @@ function ProjectsPage() {
             </p>
           </div>
         </div>
+        <div style={{ display: 'flex', margin: '2rem 0' }}>
+          <img
+            src="/software_project4.jpg"
+            alt="Software Project 4"
+            style={{ width: '40%', marginRight: '1rem' }}
+          />
+          <div style={{ flex: 1 }}>
+            <h3>
+              <Link
+                to="/projects/software/eecs16bcar"
+                style={{ color: '#725cfa', textDecoration: 'none' }}
+              >
+                voice-controlled car
+                <div style={{ marginTop: '-1rem' }}>
+                  <h5>
+                    <span style={{ color: '#ad9eff' }}>
+                      language: <span style={{ color: '#ffffff' }}>C (Arduino)</span>{' '}
+                      libraries: <span style={{ color: '#ffffff' }}>N/A</span>
+                    </span>
+                  </h5>
+                </div>
+              </Link>
+            </h3>
+            <p style={{ lineHeight: '1.5' }}>
+            for our class {' '}
+            <span style={{ color: '#ad9eff' }}>EECS 16B (Designing Information Systems & Devices II)</span>{''}, a friend and i made a simple 2WD car 
+            with closed loop feedback control over its motion as well as voice recognition commands based on a simple PCA clustering algorithm! its internal circuitry
+            is made of breadboarded components, including bandpass filters for voice denoising, and voltage regulators for powering the arduino & motors. the whole thing runs on an Arduino Leonardo!
+            for a more advanced version of this project, see my ongoing <Link
+                to="/projects/software/selfdriving"
+                style={{ color: '#ad9eff', textDecoration: 'none' }}>
+                self driving rc car project.
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </PageWrapper>
   );
@@ -439,7 +617,7 @@ function ProjectsPage() {
 /* =========================================
    HARDWARE PROJECT DETAIL PAGES
 ========================================= */
-function HardwareProjectDetail1() {
+function Cadathonbots() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
@@ -457,7 +635,7 @@ function HardwareProjectDetail1() {
   );
 }
 
-function HardwareProjectDetail2() {
+function Formulaelectric() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
@@ -478,7 +656,7 @@ function HardwareProjectDetail2() {
 /* =========================================
    SOFTWARE PROJECT DETAIL PAGES
 ========================================= */
-function SoftwareProjectDetail1() {
+function Pacbot() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
@@ -496,7 +674,7 @@ function SoftwareProjectDetail1() {
   );
 }
 
-function SoftwareProjectDetail2() {
+function Byow() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
@@ -514,7 +692,7 @@ function SoftwareProjectDetail2() {
   );
 }
 
-function SoftwareProjectDetail3() {
+function Tspalgo() {
   return (
     <PageWrapper>
       <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
@@ -523,6 +701,96 @@ function SoftwareProjectDetail3() {
       <img
         src="/software_project3.jpg"
         alt="Software Project 3"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
+function Voicecar() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        voice automated car - EECS16B
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
+function Selfdriving() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        self driving car
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
+function Gifts() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        gifts
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
+function Cpu() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        cpu
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
+        style={{ width: '60%', margin: '1rem' }}
+      />
+      <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
+      tbd
+      </p>
+    </PageWrapper>
+  );
+}
+
+function First() {
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>
+        ftc/frc
+      </h2>
+      <img
+        src="/software_project4.jpg"
+        alt="Software Project 4"
         style={{ width: '60%', margin: '1rem' }}
       />
       <p style={{ color: '#fff', maxWidth: '600px', lineHeight: '1.6' }}>
@@ -588,14 +856,22 @@ function App() {
           <Route path="/resume" element={<ResumePage />} />
           <Route path="/contact" element={<ContactPage />} />
 
-          {/* Hardware Project Detail Pages */}
-          <Route path="/projects/hardware/1" element={<HardwareProjectDetail1 />} />
-          <Route path="/projects/hardware/2" element={<HardwareProjectDetail2 />} />
+          {/* Mechanical Project Detail Pages */}
+          <Route path="/projects/hardware/formulaelectric" element={<Formulaelectric />} />
+          <Route path="/projects/hardware/cadathon" element={<Cadathonbots />} />
+          <Route path="/projects/hardware/first" element={<First />} />
 
-          {/* Software Project Detail Pages */}
-          <Route path="/projects/software/1" element={<SoftwareProjectDetail1 />} />
-          <Route path="/projects/software/2" element={<SoftwareProjectDetail2 />} />
-          <Route path="/projects/software/3" element={<SoftwareProjectDetail3 />} />
+
+          {/* Software/EE Project Detail Pages */}
+          <Route path="/projects/software/pacbot" element={<Pacbot />} />
+          <Route path="/projects/software/byow" element={<Byow />} />
+          <Route path="/projects/software/cpu" element={<Cpu />} />
+          <Route path="/projects/software/tspalgo" element={<Tspalgo />} />
+          <Route path="/projects/software/voicecar" element={<Voicecar />} />
+
+           {/*  Fullstack Project Detail Pages */}
+          <Route path="/projects/fullstack/selfdriving" element={<Selfdriving />} />
+          <Route path="/projects/fullstack/gifts" element={<Gifts/>} />
         </Routes>
       </AnimatePresence>
     </Layout>
