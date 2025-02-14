@@ -841,144 +841,142 @@ const rgbToHex = (r, g, b) =>
     .slice(1)
     .toUpperCase();
 
-function PersonalPage() {
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [authenticated, setAuthenticated] = useState(false);
-  const [signalStatus, setSignalStatus] = useState('');
-  // We'll keep one state for the color in hex format.
-  const [color, setColor] = useState('#000000');
-
-  const correctPassword = "secret"; // Change this to your desired password
-
-  // On component mount, load the saved color from localStorage.
-  useEffect(() => {
-    const storedColor = localStorage.getItem('color') || '#000000';
-    setColor(storedColor);
-    const { r, g, b } = hexToRgb(storedColor);
-    sendRgbValues(r, g, b);
-  }, []);
-
-  // Function to send a simple signal to the ESP32.
-  const handleEspSignal = async () => {
-    try {
-      // Replace with your actual ESP32 endpoint
-      const response = await fetch('http://172.16.0.74/signal', {
-        method: 'GET',
-      });
-      if (response.ok) {
-        setSignalStatus("Signal sent successfully!");
-      } else {
-        setSignalStatus("Failed to send signal.");
-      }
-    } catch (error) {
-      console.error("Error sending signal:", error);
-      setSignalStatus("i think it worked?");
-    }
-  };
-
-  // Function to send RGB values to the ESP32.
-  const sendRgbValues = async (r, g, b) => {
-    try {
-      // Replace with your actual ESP32 endpoint and adjust query parameters as needed.
-      await fetch(`http://172.16.0.74/rgb?r=${r}&g=${g}&b=${b}`, {
-        method: 'GET',
-      });
-    } catch (error) {
-      console.error('Error sending RGB values:', error);
-    }
-  };
-
-  // Handler for color change from the color picker
-  const handleColorChange = (e) => {
-    const newColor = e.target.value;
-    setColor(newColor);
-    localStorage.setItem('color', newColor);
-    const { r, g, b } = hexToRgb(newColor);
-    sendRgbValues(r, g, b);
-  };
-
-  // Handle the password form submission.
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (enteredPassword === correctPassword) {
-      setAuthenticated(true);
-    } else {
-      alert("Incorrect password. Please try again.");
-    }
-  };
-
-  // Common styles for inputs and buttons
-  const inputStyle = {
-    padding: '0.5rem',
-    fontSize: '1rem',
-    border: '2px solid #725cfa', // purple outline
-    backgroundColor: 'transparent', // clear background
-    color: '#fff',
-    borderRadius: '4px',
-    outline: 'none',
-    fontFamily: 'inherit',
-  };
-
-  const buttonStyle = {
-    padding: '0.5rem 1rem',
-    fontSize: '1rem',
-    marginLeft: '0.5rem',
-    border: '2px solid #725cfa', // purple outline
-    backgroundColor: 'transparent', // clear background
-    color: '#fff',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontFamily: 'inherit',
-  };
-
-  return (
-    <PageWrapper>
-      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>personal</h2>
-      {authenticated ? (
-        <div style={{ color: '#fff' }}>
-          {/* Your personal content */}
-          <p>lights go fwoom.</p>
-          {signalStatus && (
-            <p style={{ marginTop: '1rem', color: '#725cfa' }}>{signalStatus}</p>
-          )}
-
-          {/* Visual Color Picker */}
-          <div style={{ marginTop: '2rem' }}>
-            <h3 style={{ color: '#725cfa' }}>click box for rgb control!</h3>
-            <div style={{ margin: '1rem 0', display: 'flex', alignItems: 'center' }}>
-              <input
-                type="color"
-                value={color}
-                onChange={handleColorChange}
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  border: '2px solid #725cfa',
-                  backgroundColor: 'transparent',
-                  cursor: 'pointer',
-                }}
-              />
-              <span style={{ marginLeft: '1rem' }}>{color}</span>
+    function PersonalPage() {
+      const [enteredPassword, setEnteredPassword] = useState('');
+      const [authenticated, setAuthenticated] = useState(false);
+      const [signalStatus, setSignalStatus] = useState('');
+      // We'll keep one state for the color in hex format.
+      const [color, setColor] = useState('#000000');
+    
+      const correctPassword = "kunyimuthai"; // Change this to your desired password
+    
+      // Define your reverse proxy URL (which must be HTTPS)
+      const ESP32_PROXY = "https://floppy-donuts-admire.loca.lt"; // Change this to your actual proxy URL
+    
+      // On component mount, load the saved color from localStorage.
+      useEffect(() => {
+        const storedColor = localStorage.getItem('color') || '#000000';
+        setColor(storedColor);
+        const { r, g, b } = hexToRgb(storedColor);
+        sendRgbValues(r, g, b);
+      }, []);
+    
+      // Function to send a simple signal to the ESP32 via the proxy.
+      const handleEspSignal = async () => {
+        try {
+          const response = await fetch(`${ESP32_PROXY}/signal`, {
+            method: 'GET',
+          });
+          if (response.ok) {
+            setSignalStatus("Signal sent successfully!");
+          } else {
+            setSignalStatus("Failed to send signal.");
+          }
+        } catch (error) {
+          console.error("Error sending signal:", error);
+          setSignalStatus("i think it worked?");
+        }
+      };
+    
+      // Function to send RGB values to the ESP32 via the proxy.
+      const sendRgbValues = async (r, g, b) => {
+        try {
+          const PROXY_URL = "https://floppy-donuts-admire.loca.lt"; // Use the URL from LocalTunnel
+          await fetch(`${PROXY_URL}/rgb?r=${r}&g=${g}&b=${b}`, { method: 'GET' });
+        } catch (error) {
+          console.error('Error sending RGB values:', error);
+        }
+      };
+    
+      // Handler for color change from the color picker
+      const handleColorChange = (e) => {
+        const newColor = e.target.value;
+        setColor(newColor);
+        localStorage.setItem('color', newColor);
+        const { r, g, b } = hexToRgb(newColor);
+        sendRgbValues(r, g, b);
+      };
+    
+      // Handle the password form submission.
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (enteredPassword === correctPassword) {
+          setAuthenticated(true);
+        } else {
+          alert("Incorrect password. Please try again.");
+        }
+      };
+    
+      // Common styles for inputs and buttons remain unchanged
+      const inputStyle = {
+        padding: '0.5rem',
+        fontSize: '1rem',
+        border: '2px solid #725cfa',
+        backgroundColor: 'transparent',
+        color: '#fff',
+        borderRadius: '4px',
+        outline: 'none',
+        fontFamily: 'inherit',
+      };
+    
+      const buttonStyle = {
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        marginLeft: '0.5rem',
+        border: '2px solid #725cfa',
+        backgroundColor: 'transparent',
+        color: '#fff',
+        borderRadius: '4px',
+        cursor: 'pointer',
+        fontFamily: 'inherit',
+      };
+    
+      return (
+        <PageWrapper>
+          <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>personal</h2>
+          {authenticated ? (
+            <div style={{ color: '#fff' }}>
+              <p>lights go fwoom.</p>
+              {signalStatus && (
+                <p style={{ marginTop: '1rem', color: '#725cfa' }}>{signalStatus}</p>
+              )}
+              <div style={{ marginTop: '2rem' }}>
+                <h3 style={{ color: '#725cfa' }}>click box for rgb control!</h3>
+                <div style={{ margin: '1rem 0', display: 'flex', alignItems: 'center' }}>
+                  <input
+                    type="color"
+                    value={color}
+                    onChange={handleColorChange}
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                      border: '2px solid #725cfa',
+                      backgroundColor: 'transparent',
+                      cursor: 'pointer',
+                    }}
+                  />
+                  <span style={{ marginLeft: '1rem' }}>{color}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="password"
-            value={enteredPassword}
-            onChange={(e) => setEnteredPassword(e.target.value)}
-            placeholder="Enter password"
-            style={inputStyle}
-          />
-          <button type="submit" style={buttonStyle}>
-            submit
-          </button>
-        </form>
-      )}
-    </PageWrapper>
-  );
-}
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <input
+                type="password"
+                value={enteredPassword}
+                onChange={(e) => setEnteredPassword(e.target.value)}
+                placeholder="Enter password"
+                style={inputStyle}
+              />
+              <button type="submit" style={buttonStyle}>
+                submit
+              </button>
+            </form>
+          )}
+        </PageWrapper>
+      );
+    }
+
 
 /* =========================================
    RESUME PAGE
