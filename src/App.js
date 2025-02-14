@@ -331,7 +331,7 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-            i occasionally make gifts for my girlfriend and other friends!
+            i occasionally make gifts for my friends!
             </p>
           </div>
         </div>
