@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
@@ -118,6 +118,12 @@ const Navbar = memo(() => {
         className={`navbar-link ${location.pathname === '/contact' ? 'active' : ''}`}
       >
         contact
+      </span>
+      <span
+        onClick={() => handleClick('/personal')}
+        className={`navbar-link ${location.pathname === '/personal' ? 'active' : ''}`}
+      >
+        personal
       </span>
     </nav>
   );
@@ -262,7 +268,6 @@ function HomePage() {
   );
 }
 
-
 /* =========================================
    ABOUT PAGE
 ========================================= */
@@ -342,7 +347,7 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/hardware/2"
+                to="/projects/hardware/formulaelectric"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 fsae ev (formula electric car) suspension system
@@ -384,7 +389,7 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/hardware/cadathons"
+                to="/projects/hardware/cadathon"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 cadathon robots
@@ -407,26 +412,6 @@ function ProjectsPage() {
                 to="/projects/hardware/first"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
-                personal robot designs
-              </Link>
-            </h3>
-            <p style={{ lineHeight: '1.5' }}>
-            i taught myself CAD(<span style={{ color: '#ad9eff' }}>Onshape</span>{''}) by designing various FTC (FIRST Tech Challenge) robots for fun. i ended up being able to churn them out day by day!
-            </p>
-          </div>
-        </div>
-        <div style={{ display: 'flex', margin: '2rem 0' }}>
-          <img
-            src="/hardware_project2.jpg"
-            alt="Hardware Project 2"
-            style={{ width: '40%', marginRight: '1rem' }}
-          />
-          <div style={{ flex: 1 }}>
-            <h3>
-              <Link
-                to="/projects/hardware/personal"
-                style={{ color: '#725cfa', textDecoration: 'none' }}
-              >
                 FTC/FRC
               </Link>
             </h3>
@@ -435,7 +420,6 @@ function ProjectsPage() {
             </p>
           </div>
         </div>
-
 
         {/* Software Section */}
         <h2 style={{ borderBottom: '2px solid #725cfa', marginTop: '3rem' }}>software/ee</h2>
@@ -602,7 +586,7 @@ function ProjectsPage() {
           <div style={{ flex: 1 }}>
             <h3>
               <Link
-                to="/projects/software/eecs16bcar"
+                to="/projects/software/voicecar"
                 style={{ color: '#725cfa', textDecoration: 'none' }}
               >
                 voice-controlled car
@@ -837,6 +821,164 @@ function Personal() {
   );
 }
 
+// Utility to convert hex color to RGB object
+const hexToRgb = (hex) => {
+  // Remove the hash if present
+  hex = hex.replace(/^#/, '');
+  const bigint = parseInt(hex, 16);
+  return {
+    r: (bigint >> 16) & 255,
+    g: (bigint >> 8) & 255,
+    b: bigint & 255,
+  };
+};
+
+// Utility to convert RGB to hex (if needed)
+const rgbToHex = (r, g, b) =>
+  "#" +
+  ((1 << 24) + (r << 16) + (g << 8) + b)
+    .toString(16)
+    .slice(1)
+    .toUpperCase();
+
+function PersonalPage() {
+  const [enteredPassword, setEnteredPassword] = useState('');
+  const [authenticated, setAuthenticated] = useState(false);
+  const [signalStatus, setSignalStatus] = useState('');
+  // We'll keep one state for the color in hex format.
+  const [color, setColor] = useState('#000000');
+
+  const correctPassword = "secret"; // Change this to your desired password
+
+  // On component mount, load the saved color from localStorage.
+  useEffect(() => {
+    const storedColor = localStorage.getItem('color') || '#000000';
+    setColor(storedColor);
+    const { r, g, b } = hexToRgb(storedColor);
+    sendRgbValues(r, g, b);
+  }, []);
+
+  // Function to send a simple signal to the ESP32.
+  const handleEspSignal = async () => {
+    try {
+      // Replace with your actual ESP32 endpoint
+      const response = await fetch('http://172.16.0.74/signal', {
+        method: 'GET',
+      });
+      if (response.ok) {
+        setSignalStatus("Signal sent successfully!");
+      } else {
+        setSignalStatus("Failed to send signal.");
+      }
+    } catch (error) {
+      console.error("Error sending signal:", error);
+      setSignalStatus("i think it worked?");
+    }
+  };
+
+  // Function to send RGB values to the ESP32.
+  const sendRgbValues = async (r, g, b) => {
+    try {
+      // Replace with your actual ESP32 endpoint and adjust query parameters as needed.
+      await fetch(`http://172.16.0.74/rgb?r=${r}&g=${g}&b=${b}`, {
+        method: 'GET',
+      });
+    } catch (error) {
+      console.error('Error sending RGB values:', error);
+    }
+  };
+
+  // Handler for color change from the color picker
+  const handleColorChange = (e) => {
+    const newColor = e.target.value;
+    setColor(newColor);
+    localStorage.setItem('color', newColor);
+    const { r, g, b } = hexToRgb(newColor);
+    sendRgbValues(r, g, b);
+  };
+
+  // Handle the password form submission.
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (enteredPassword === correctPassword) {
+      setAuthenticated(true);
+    } else {
+      alert("Incorrect password. Please try again.");
+    }
+  };
+
+  // Common styles for inputs and buttons
+  const inputStyle = {
+    padding: '0.5rem',
+    fontSize: '1rem',
+    border: '2px solid #725cfa', // purple outline
+    backgroundColor: 'transparent', // clear background
+    color: '#fff',
+    borderRadius: '4px',
+    outline: 'none',
+    fontFamily: 'inherit',
+  };
+
+  const buttonStyle = {
+    padding: '0.5rem 1rem',
+    fontSize: '1rem',
+    marginLeft: '0.5rem',
+    border: '2px solid #725cfa', // purple outline
+    backgroundColor: 'transparent', // clear background
+    color: '#fff',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+  };
+
+  return (
+    <PageWrapper>
+      <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>personal</h2>
+      {authenticated ? (
+        <div style={{ color: '#fff' }}>
+          {/* Your personal content */}
+          <p>lights go fwoom.</p>
+          {signalStatus && (
+            <p style={{ marginTop: '1rem', color: '#725cfa' }}>{signalStatus}</p>
+          )}
+
+          {/* Visual Color Picker */}
+          <div style={{ marginTop: '2rem' }}>
+            <h3 style={{ color: '#725cfa' }}>click box for rgb control!</h3>
+            <div style={{ margin: '1rem 0', display: 'flex', alignItems: 'center' }}>
+              <input
+                type="color"
+                value={color}
+                onChange={handleColorChange}
+                style={{
+                  width: '50px',
+                  height: '50px',
+                  border: '2px solid #725cfa',
+                  backgroundColor: 'transparent',
+                  cursor: 'pointer',
+                }}
+              />
+              <span style={{ marginLeft: '1rem' }}>{color}</span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="password"
+            value={enteredPassword}
+            onChange={(e) => setEnteredPassword(e.target.value)}
+            placeholder="Enter password"
+            style={inputStyle}
+          />
+          <button type="submit" style={buttonStyle}>
+            submit
+          </button>
+        </form>
+      )}
+    </PageWrapper>
+  );
+}
 
 /* =========================================
    RESUME PAGE
@@ -893,14 +1035,13 @@ function App() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/resume" element={<ResumePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/personal" element={<PersonalPage />} />
 
           {/* Mechanical Project Detail Pages */}
           <Route path="/projects/hardware/formulaelectric" element={<Formulaelectric />} />
           <Route path="/projects/hardware/cadathon" element={<Cadathonbots />} />
           <Route path="/projects/hardware/personal" element={<Personal />} />
-
           <Route path="/projects/hardware/first" element={<First />} />
-
 
           {/* Software/EE Project Detail Pages */}
           <Route path="/projects/software/pacbot" element={<Pacbot />} />
@@ -909,9 +1050,9 @@ function App() {
           <Route path="/projects/software/tspalgo" element={<Tspalgo />} />
           <Route path="/projects/software/voicecar" element={<Voicecar />} />
 
-           {/*  Fullstack Project Detail Pages */}
+          {/* Fullstack Project Detail Pages */}
           <Route path="/projects/fullstack/selfdriving" element={<Selfdriving />} />
-          <Route path="/projects/fullstack/gifts" element={<Gifts/>} />
+          <Route path="/projects/fullstack/gifts" element={<Gifts />} />
         </Routes>
       </AnimatePresence>
     </Layout>
