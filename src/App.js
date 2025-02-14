@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
@@ -845,22 +845,37 @@ const rgbToHex = (r, g, b) =>
       const [enteredPassword, setEnteredPassword] = useState('');
       const [authenticated, setAuthenticated] = useState(false);
       const [signalStatus, setSignalStatus] = useState('');
-      // We'll keep one state for the color in hex format.
       const [color, setColor] = useState('#000000');
-    
-      const correctPassword = "kunyimuthai"; // Change this to your desired password
-    
-      // Define your reverse proxy URL (which must be HTTPS)
-      const ESP32_PROXY = "https://floppy-donuts-admire.loca.lt"; // Change this to your actual proxy URL
-    
-      // On component mount, load the saved color from localStorage.
+      const correctPassword = "kunyimuthai"; // your desired password
+      
+      // Define your reverse proxy URL (must be HTTPS)
+      const ESP32_PROXY = "https://floppy-donuts-admire.loca.lt";
+      
+      // useRef to always hold the latest color value.
+      const colorRef = useRef(color);
+      
+      // Update the ref whenever 'color' changes.
+      useEffect(() => {
+        colorRef.current = color;
+      }, [color]);
+      
+      // On component mount, load the saved color from localStorage and send it.
       useEffect(() => {
         const storedColor = localStorage.getItem('color') || '#000000';
         setColor(storedColor);
         const { r, g, b } = hexToRgb(storedColor);
         sendRgbValues(r, g, b);
       }, []);
-    
+      
+      // New effect: every 10 seconds, send the current RGB value.
+      useEffect(() => {
+        const interval = setInterval(() => {
+          const { r, g, b } = hexToRgb(colorRef.current);
+          sendRgbValues(r, g, b);
+        }, 10000); // 10,000 ms = 10 seconds
+        return () => clearInterval(interval);
+      }, []);
+      
       // Function to send a simple signal to the ESP32 via the proxy.
       const handleEspSignal = async () => {
         try {
@@ -877,18 +892,17 @@ const rgbToHex = (r, g, b) =>
           setSignalStatus("i think it worked?");
         }
       };
-    
+      
       // Function to send RGB values to the ESP32 via the proxy.
       const sendRgbValues = async (r, g, b) => {
         try {
-          const PROXY_URL = "https://floppy-donuts-admire.loca.lt"; // Use the URL from LocalTunnel
-          await fetch(`${PROXY_URL}/rgb?r=${r}&g=${g}&b=${b}`, { method: 'GET' });
+          await fetch(`${ESP32_PROXY}/rgb?r=${r}&g=${g}&b=${b}`, { method: 'GET' });
         } catch (error) {
           console.error('Error sending RGB values:', error);
         }
       };
-    
-      // Handler for color change from the color picker
+      
+      // Handler for color change from the color picker.
       const handleColorChange = (e) => {
         const newColor = e.target.value;
         setColor(newColor);
@@ -896,7 +910,7 @@ const rgbToHex = (r, g, b) =>
         const { r, g, b } = hexToRgb(newColor);
         sendRgbValues(r, g, b);
       };
-    
+      
       // Handle the password form submission.
       const handleSubmit = (e) => {
         e.preventDefault();
@@ -906,8 +920,8 @@ const rgbToHex = (r, g, b) =>
           alert("Incorrect password. Please try again.");
         }
       };
-    
-      // Common styles for inputs and buttons remain unchanged
+      
+      // Common styles for inputs and buttons.
       const inputStyle = {
         padding: '0.5rem',
         fontSize: '1rem',
@@ -918,7 +932,7 @@ const rgbToHex = (r, g, b) =>
         outline: 'none',
         fontFamily: 'inherit',
       };
-    
+      
       const buttonStyle = {
         padding: '0.5rem 1rem',
         fontSize: '1rem',
@@ -930,7 +944,7 @@ const rgbToHex = (r, g, b) =>
         cursor: 'pointer',
         fontFamily: 'inherit',
       };
-    
+      
       return (
         <PageWrapper>
           <h2 style={{ color: '#725cfa', marginBottom: '1rem' }}>personal</h2>
@@ -976,7 +990,6 @@ const rgbToHex = (r, g, b) =>
         </PageWrapper>
       );
     }
-
 
 /* =========================================
    RESUME PAGE
