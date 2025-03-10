@@ -289,7 +289,7 @@ function ProjectsPage() {
   return (
     <PageWrapper>
       <div style={{ width: '80%', margin: '2rem auto', color: '#fff' }}>
-        <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects (website is WIP, here is a link to a  <a href="tinyurl.com/athul-portfolio" style={{ color: '#725cfa' }}>
+        <h1 style={{ color: '#725cfa', marginBottom: '1.5rem' }}>projects (website is WIP, here is a link to a  <a href="https://drive.google.com/file/d/1QKbdg3JOMjwBgAJz7paG2adWZQieixM3/view?usp=sharing" style={{ color: '#725cfa' }}>
                pdf portfolio.
               </a>)</h1>
         {/* fullstack section */}
@@ -331,7 +331,8 @@ function ProjectsPage() {
               </Link>
             </h3>
             <p style={{ lineHeight: '1.5' }}>
-            i occasionally make gifts for my friends!
+            i occasionally make gifts for my 
+            friends!
             </p>
           </div>
         </div>
